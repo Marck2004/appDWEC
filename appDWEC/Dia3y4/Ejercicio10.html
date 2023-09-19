@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 10</title>
+    <script>
+        window.onload = function(){
+
+            var suma = 0;
+            var salida = 0;
+            var contador = 0;
+
+                    while(salida!=666){
+                     salida = prompt("Introduzca numeros, 666 para salir");
+
+                        if(!isNaN(salida) && salida!=666){
+                            suma = suma + parseInt(salida);
+                            contador++;
+                        }
+                        var parrafo = document.createElement("p");
+                        parrafo.appendChild(document.createTextNode("Has introducido "+contador+" que tienen una suma de "+suma));
+                        document.body.appendChild(parrafo);
+                        
+        }
+    }
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

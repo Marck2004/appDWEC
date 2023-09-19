@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 8</title>
+</head>
+<body>
+    
+    <script>
+        window.onload = function(){
+
+    let filas = prompt("Inserte numero de filas");
+    let columnas = prompt("Inserte numero de columnas");
+
+            var tabla=document.createElement("table");
+        tabla.width=300;
+        tabla.style.height=300;
+        document.body.appendChild(tabla);
+
+
+        for (i=0;i<filas;i++) {
+
+var fila=document.createElement("tr");
+tabla.appendChild(fila);
+
+for (j=0;j<columnas;j++) {
+    var celda=document.createElement("td");
+    fila.appendChild(celda);
+    
+    var contenido=document.createTextNode("A");
+    celda.style.border="1px solid black";
+    celda.appendChild(contenido);
+    
+    if ((i % 2) != (j % 2)) celda.style.backgroundColor='green';
+    
+}    
+}
+
+        }
+    </script>
+
+</body>
+</html>

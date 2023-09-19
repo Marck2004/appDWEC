@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio5</title>
+    <script>
+        window.onload = function (){
+
+            let colores = ["red","green","blue","yellow","orange"];
+            let coloroculto ;
+            let salida = true;
+            
+
+     while(salida){
+        coloroculto = prompt("Que color quieres oclutar del rojo,verde,azul,amarillo o naranja?");
+     
+         if(colores.includes(coloroculto)){
+            salida = false;
+            break;
+         }   else{
+            coloroculto = prompt("Que color quieres oclutar del rojo,verde,azul,amarillo o naranja?")
+            salida=false;
+        }
+        }
+
+            if(colores.includes(coloroculto)){
+            var posicioneliminada = colores.indexOf(coloroculto);
+        colores.splice(posicioneliminada,1);       
+        }
+
+        let auxarr = colores.slice();
+
+            let contador = 0;
+            while(contador <= colores.length){
+                document.body.innerHTML += `<div class =colores style = 'background-color:${auxarr[contador]}; width:200px; height:200px;'></div>`;
+                contador++;
+        }
+    }
+
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

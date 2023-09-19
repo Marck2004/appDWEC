@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script> /*
+    var ListaFotos = [
+                "../Dia3y4/imagenes/imagenjs.png",
+                "../Dia3y4/imagenes/imagenjs.png",
+                "../Dia3y4/imagenes/imagenjs.png",
+                "../Dia3y4/imagenes/imagenjs.png",
+                "../Dia3y4/imagenes/imagenjs.png",
+                "../Dia3y4/imagenes/imagenjs.png"                
+            ];
+            */
+    var Numeros = [3,54,98,2,7,9,11];
+    var listaAux = [];
+    var contador = 0;
+    let suma = 0;
+
+    window.onload = function (){
+/*
+        for(let i = 0; i < ListaFotos.length;i++){
+            document.body.innerHTML += `<p><img src = ${ListaFotos[i]}></img></p>`;
+        }
+        */
+       for(var i=0; i < Numeros.length; i++ ){
+        suma = suma + Numeros[i];
+        if(Numeros[i] % 2 != 0){
+            listaAux.push(Numeros[i]);
+            var numerosimpares = Numeros[i];
+            document.body.innerHTML += `<p>${Numeros[i]}</p>`;
+            contador++;
+             
+        }
+       }
+       listaAux.sort((a,b)=>{
+        if(a>b){
+        return -1 
+        }else{ 
+        return 1}
+        });
+
+       document.body.innerHTML += `<p>El penultimo numero es: ${listaAux[1]}</p>`;
+
+       document.body.innerHTML += `<p>El numero de impares es: ${contador}</p>`;
+       document.body.innerHTML += `<p>La suma es de : ${suma}</p>`;
+    }
+    
+    </script>
+
+    <title>Numero pares</title>
+</head>
+<body>
+</body>
+</html>
