@@ -4,7 +4,8 @@
     padding: 0px;
 }
 
-#boton, #boton2,#apareceado,#aprobado{
+#boton, #boton2,#apareceado,#aprobado,#devolvercaracteres,#XYZ,#DAW,#Mayusculas,
+#minusculas,#palabra,#frases,#nombres{
     width: 50px;
     height: 50px;
     background-color: red;
