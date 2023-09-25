@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+
+        var listagrupos = [];
+
+function addGrupo(){
+    let nombregrupo =document.getElementById('grupocantante').value.trim();
+    listagrupos.push(nombregrupo);
+        pintarSelect();
+ }
+
+    function eliminarultimogrupo(){
+
+    listagrupos.pop();
+
+    pintarSelect();
+}
+
+    function eliminarprimergrupo(){
+
+    listagrupos.unshift();
+
+    pintarSelect();
+}
+
+    function eliminar(){
+        let nombreeliminar = document.getElementById('grupocantante').value.trim().toLowerCase();
+        //let lugar = listagrupos.indexOf(nombreeliminar);
+        let posicion = listagrupos.findIndex((grupo)=>grupo.toLowerCase().includes(nombreeliminar));
+        if(posicion != -1) listagrupos.splice(posicion,1);
+            pintarSelect();
+        
+    }
+
+    function eliminarGruposAscendente(){
+        listagrupos.sort();
+        pintarSelect();
+    }
+
+    function eliminarGruposDescendente(){
+        listagrupos.sort((a,b)=>{
+            if(a>b) return -1;
+        else return 1;
+        
+        });
+        pintarSelect();
+    }
+    
+    
+function pintarSelect(){
+    let selectPlaylist = document.getElementById('playlist');
+selectPlaylist.innerHTML = " ";
+    listagrupos.forEach((grupo)=>{
+selectPlaylist.innerHTML += `<option>${grupo}</option>`;
+})
+}
+
+
+
+    </script>
+    <title>Arrays</title>
+</head>
+<body>
+    
+    <p>Grupo cantante: <input type="text" name="grupocantante" id="grupocantante"></p>
+<p>
+    <input type="button" onclick="addGrupo()" value="Añadir">
+    <input type="button" onclick="eliminarultimogrupo()" value="Eliminarultimo">
+    <input type="button" onclick="eliminarprimergrupo()" value="Eliminarprimero">
+    <input type="button" onclick="eliminar()" value="Eliminar">
+    <input type="button" onclick="eliminarGruposAscendente()" value="eliminarGruposAscendente">
+    <input type="button" onclick="eliminarGruposDescendente()" value="eliminarGruposDescendente">
+</p>
+<p>
+    Playlist:
+    <select name="playlist" id="playlist">
+        
+    </select>
+</p>
+</body>
+</html>
