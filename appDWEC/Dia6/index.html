@@ -8,73 +8,192 @@
 
         var listagrupos = [];
 
+        listagrupos.push(["Quevedo","España","Reggaeton",1000]);
+        listagrupos.push(["BadBunny","PR","Reggaeton",1]);
+        listagrupos.push(["Snoop Dog","Ingles","Reggaeton",50000]);
+        listagrupos.push(["Quimico","etiope","rock",40]);
+        listagrupos.push(["Osuna","España","pop",600000]);
+        listagrupos.push(["Eminem","España","rap",150140]);
+
+            onload = function(){
+                pintarSelect(listagrupos);
+            }
+
 function addGrupo(){
     let nombregrupo =document.getElementById('grupocantante').value.trim();
-    listagrupos.push(nombregrupo);
-        pintarSelect();
+    let nombrepais = document.getElementById('Pais').value.trim();
+    let tipo = document.getElementById('Tipo').value.trim();
+    listagrupos.push([nombregrupo,nombrepais,tipo]);
+
+        pintarSelect(listagrupos);
  }
 
     function eliminarultimogrupo(){
 
     listagrupos.pop();
 
-    pintarSelect();
+    pintarSelect(listagrupos);
 }
 
     function eliminarprimergrupo(){
 
     listagrupos.unshift();
 
-    pintarSelect();
+    pintarSelect(listagrupos);
 }
 
     function eliminar(){
         let nombreeliminar = document.getElementById('grupocantante').value.trim().toLowerCase();
         //let lugar = listagrupos.indexOf(nombreeliminar);
-        let posicion = listagrupos.findIndex((grupo)=>grupo.toLowerCase().includes(nombreeliminar));
+        let posicion = listagrupos.findIndex((grupo)=>grupo[0].toLowerCase().includes(nombreeliminar));
         if(posicion != -1) listagrupos.splice(posicion,1);
-            pintarSelect();
+            pintarSelect(listagrupos);
         
     }
 
-    function eliminarGruposAscendente(){
-        listagrupos.sort();
-        pintarSelect();
+    function ordenarGruposPorNombreAscendente(){
+        listagrupos.sort((a,b)=>{
+            if(a[0]>b[0]) return 1;
+        else return -1;
+        
+        });
+        pintarSelect(listagrupos);
     }
 
-    function eliminarGruposDescendente(){
+    function ordenarGruposPorNombreDescendente(){
         listagrupos.sort((a,b)=>{
-            if(a>b) return -1;
+            if(a[0]>b[0]) return -1;
         else return 1;
         
         });
-        pintarSelect();
+        pintarSelect(listagrupos);
+    }
+    function ordenarGruposPorPaisDescendente(){
+        listagrupos.sort((a,b)=>{
+            if(a[1]>b[1]) return -1;
+        else return 1;
+        
+        });
+        pintarSelect(listagrupos);
+    }
+    function ordenarGruposPorPaisAscendente(){
+        listagrupos.sort((a,b)=>{
+            if(a[1]>b[1]) return 1;
+        else return -1;
+        
+        });
+        pintarSelect(listagrupos);
+    }
+    function ordenarGruposPorTiposDescendente(){
+        listagrupos.sort((a,b)=>{
+            if(a[2]>b[2]) return -1;
+        else return 1;
+        
+        });
+        pintarSelect(listagrupos);
+    }
+    function ordenarGruposPorTiposAscendente(){
+        listagrupos.sort((a,b)=>{
+            if(a[2]>b[2]) return 1;
+        else return -1;
+        
+        });
+        pintarSelect(listagrupos);
+    }
+    function pintarespañoles(){
+
+    let listafiltrada = listagrupos.filter((grupo) => grupo[1].toUpperCase()=="ESPAÑA");
+
+        pintarSelect(listafiltrada);
+        return listafiltrada;
     }
     
-    
-function pintarSelect(){
+function pintarSelect(lista){
     let selectPlaylist = document.getElementById('playlist');
 selectPlaylist.innerHTML = " ";
-    listagrupos.forEach((grupo)=>{
-selectPlaylist.innerHTML += `<option>${grupo}</option>`;
+    lista.forEach((grupo)=>{
+selectPlaylist.innerHTML += `<option>${grupo[0]}</option>`;
 })
 }
 
+    function MostrarTresPrimeros(){
+        let listatroceada = listagrupos.slice(0,3); 
 
+        pintarSelect(listatroceada);
+    }
 
+    function MostrarDosEspañoles(){
+
+        var pintarDosEspañoles = pintarespañoles();
+
+        let pintaresp = pintarDosEspañoles.slice(0,2);
+
+        pintarSelect(pintaresp);
+    }
+
+    function mostrarEspañolPorAlfb(){
+
+        var pintarEspañoles = pintarespañoles();
+
+        var ordenarEspañoles = pintarEspañoles.sort((a,b)=>{
+            if(a>b) return 1;
+            else return -1;
+        }).slice(0,1);
+        pintarSelect(ordenarEspañoles);
+    }
+
+    function Incrementarventas(){
+
+        var incremento = (listagrupos.map((x)=> x[3]=x[3]+1000));
+        EmitirFactura(incremento);
+
+    }
+
+    function EmitirFactura(lista){
+    let contenido = "<table style='border:1px solid black'><tbody>";
+
+        contenido += "<th style='border:1px solid black'>NombreGrupo</th>";
+        contenido += "<th style='border:1px solid black'>Ventas</th>";
+        
+        lista.forEach(element => {
+            contenido += "<tr>";
+                contenido +="<td style='border:1px solid black'>"+element[0]+"</td>";
+                contenido += "<td style='border:1px solid black'>"+element[3]+"</td>";
+                contenido += "</tr>";
+        });
+        
+    contenido += "</tbody></table>";
+    document.body.innerHTML += contenido;
+    }
     </script>
     <title>Arrays</title>
 </head>
 <body>
     
-    <p>Grupo cantante: <input type="text" name="grupocantante" id="grupocantante"></p>
+    <p>Grupo cantante: 
+    <input type="text" name="grupocantante" id="grupocantante"></p>
+    <p>Pais</p>
+    <input type="text" name="Pais" id="Pais">
+    <p>Tipo</p>
+    <input type="text" name="Tipo" id="Tipo">
 <p>
     <input type="button" onclick="addGrupo()" value="Añadir">
     <input type="button" onclick="eliminarultimogrupo()" value="Eliminarultimo">
     <input type="button" onclick="eliminarprimergrupo()" value="Eliminarprimero">
     <input type="button" onclick="eliminar()" value="Eliminar">
-    <input type="button" onclick="eliminarGruposAscendente()" value="eliminarGruposAscendente">
-    <input type="button" onclick="eliminarGruposDescendente()" value="eliminarGruposDescendente">
+
+    <input type="button" onclick="ordenarGruposPorNombreAscendente()" value="ordenarGruposPorNombreAscendente">
+    <input type="button" onclick="ordenarGruposPorNombreDescendente()" value="ordenarGruposPorNombreDescendente">
+    <input type="button" onclick="ordenarGruposPorPaisDescendente()" value="ordenarGruposPorPaisDescendente">
+    <input type="button" onclick="ordenarGruposPorPaisDescendente()" value="ordenarGruposPorPaisDescendente">
+    <input type="button" onclick="ordenarGruposPorTiposAscendente()" value="ordenarGruposPorTiposAscendente">
+    <input type="button" onclick="ordenarGruposPorTiposDescendente()" value="ordenarGruposPorTiposDescendente">
+
+    <input type="button" onclick="pintarespañoles()" value="pintar españoles">
+    <input type="button" onclick="MostrarTresPrimeros()" value="MostrarTresPrimeros">
+    <input type="button" onclick="MostrarDosEspañoles()" value="MostrarDosEspañoles">
+    <input type="button" onclick="mostrarEspañolPorAlfb()" value="mostrarEspañolPorAlfb">
+    <input type="button" onclick="Incrementarventas()" value="Incrementarventas">
 </p>
 <p>
     Playlist:
@@ -82,5 +201,13 @@ selectPlaylist.innerHTML += `<option>${grupo}</option>`;
         
     </select>
 </p>
+<script>
+    var listaParrafos = document.getElementsByTagName("p");
+    console.log(listaParrafos.length);
+    console.log(listaParrafos[0].innerHTML);
+    var lista2=[...listaParrafos];
+    console.log(lista2.sort());
+        
+</script>
 </body>
 </html>
