@@ -1,24 +1,29 @@
 var listaUsuarios=[];
 function cargarUsuarios(){
-
-	listaUsuarios.push(['Jaime','12345'],['Javier','0000'],['Jorge','1111'],['Juan','2222'],['Jacinto','3333']);
+	
+	listaUsuarios.push(['Marcos','2004']);
+	listaUsuarios.push(['Cristina','1234']);
+	listaUsuarios.push(['Fernanda','5000']);
+	listaUsuarios.push(['Alberto','9999']);
+	listaUsuarios.push(['Sofia','0000']);
 
 }
 function comprobarUsuario(){
 
-	let usuario = document.getElementById('usuario').value.trim();
-	let contraseña = document.getElementById('clave').value.trim();
+		var usuario = document.getElementById('usuario').value.trim();
+		var clave = document.getElementById('clave').value.trim();
 
-	let posicion = listaUsuarios.findIndex((nombreUsuario)=>nombreUsuario[0] == usuario);
+			var Posicion = listaUsuarios.findIndex((nombres)=>nombres[0]==usuario);
 
-	if(posicion !=-1){
-		if(contraseña== listaUsuarios[posicion][1]){
-	location.href="aterrizaje.html";
-	}else{
-		alert("usuario/clave usuario");
-	}
-}else{
-		alert("usuario/clave incorrecta");
-	}
+		if (Posicion!=-1) {
+			if(clave == listaUsuarios[Posicion][1]){
+			location.href="aterrizaje.html";
+		}else{
+			alert('Usuario/clave incorrectos');
+			}
+		}else{
+			alert('Usuario/clave incorrectos');
+		}
 }
 cargarUsuarios();
+
