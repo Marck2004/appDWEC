@@ -26,34 +26,11 @@ function inicioSesion(){
 
 })
 }
-
+    function recuperarContraseña(){
+        window.location.href = "olvidocontraseña.html";
+    }
     function formularioRegistro(){
         window.location.href = "registro.html";
     }
-    
 
-    function validarRegistroUsuario(){
-        var registraremail = document.getElementById('emailRegistro').value.trim();
-        var registrartlf = document.getElementById('tlfRegistro').value.trim();
-        var registrarUsuario = document.getElementById('usuarioRegistro').value.trim();
-        var registrarContraseña = document.getElementById('contraseñaRegistro').value.trim();
-
-        var nuevoUsuario = new Usuario(registraremail,registrartlf,registrarUsuario,registrarContraseña);
-        
-        if(nuevoUsuario.comprobarEmail(registraremail)){
-
-        }else if(nuevoUsuario.comprobarContraseña(registrarContraseña)){
-
-        }else if(nuevoUsuario.comprobartlf(registrartlf)){
-            
-        }else{
-            listaUsuarios.push(nuevoUsuario);
-            console.log(" email "+registraremail+" tlf "+registrartlf+" Usuario "+registrarUsuario+" contraseña "+registrarContraseña+
-            " Añadido con exito");
-            console.log(listaUsuarios);
-        }
-
-       
-        
-    }
     

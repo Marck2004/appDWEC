@@ -27,4 +27,5 @@ class Usuario{
             alert("Formato de telefono no aceptado");
         }
     }
+    
 }
