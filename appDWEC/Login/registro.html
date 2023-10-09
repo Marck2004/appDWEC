@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <script src="./clases/Usuario.js"></script>
+    <script src="./registro.js"></script>
+</head>
+<body>
+    <form id="NuevoUsuario" >
+              
+        <label for="email"><h3>Introduzca su email</h3></label>
+            <input type="text" name="emailRegistro" id="emailRegistro" placeholder="email registro">
+             
+        <label for="tlf"><h3>Introduzca telefono</h3></label>
+            <input type="number" name="tlfRegistro" id="tlfRegistro" placeholder="Numero de telefono">
+
+        <label for="Usuario"><h3>Usuario:</h3></label>
+            <input type="text" name="usuarioRegistro" id="usuarioRegistro" placeholder="Nombre de Usuario">
+
+        <label for="Contraseña"><h3>Contraseña:</h3></label>
+            <input type="password" name="contraseñaRegistro" id="contraseñaRegistro" placeholder="Contraseña">
+
+            <input type="submit" value="Sing up" onclick="VolverInicioSesion()">
+            <button><a href="#" id="linkRegistrarse" onclick="VolverInicioSesion()">Registrese</a></button>
+        
+    </form>
+</body>
+</html>

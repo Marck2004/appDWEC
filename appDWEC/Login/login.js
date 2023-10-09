@@ -28,22 +28,10 @@ function inicioSesion(){
 }
 
     function formularioRegistro(){
-
-    var sectionHiddenRegistro = document.getElementById('UsuarioNuevoRegistro');
-    var ocultarInicioSesion = document.getElementById('inicioSesionOculto');
-    var envioRegistro = document.getElementById('Registro');
-
-    if (sectionHiddenRegistro.style.display == "block") {
-        sectionHiddenRegistro.style.display = "none";
-        ocultarInicioSesion.style.display = "block";
-        envioRegistro.style.display = "none";
-    }else{
-        sectionHiddenRegistro.style.display = "block";
-        ocultarInicioSesion.style.display = "none";
-        envioRegistro.style.display = "block";
+        window.location.href = "registro.html";
     }
     
-}
+
     function validarRegistroUsuario(){
         var registraremail = document.getElementById('emailRegistro').value.trim();
         var registrartlf = document.getElementById('tlfRegistro').value.trim();
@@ -65,6 +53,7 @@ function inicioSesion(){
             console.log(listaUsuarios);
         }
 
-        
+       
         
     }
+    
