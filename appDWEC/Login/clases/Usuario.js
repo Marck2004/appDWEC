@@ -7,7 +7,7 @@ class Usuario{
     }
     comprobarContraseña(contraseña){
         if(contraseña.length < 8){
-            document.getElementById('contraseña').style.border = "3px solid red";
+            document.getElementById('contraseñaRegistro').style.border = "3px solid red";
             alert("Contraseña minimo 8 caracteres");
         }
     }
