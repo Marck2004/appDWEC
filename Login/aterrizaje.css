@@ -2,6 +2,14 @@
     float: right;
     margin-left: 25px;
 }
+
 #pills-tab{
     float: right;
+    width: 100%;
+}
+#asientos{
+    margin: 0px auto;
+}
+#nuevaCheckbox{
+    background-color: red;
 }

@@ -1,0 +1,16 @@
+[
+    {"idProyecto":1,
+    "Nombre":"cepsa1",
+    "descripcion":"XXXXX",
+    "idCliente":1,
+    "presupuesto":1000,
+    "fechainicio":"10/10/2023",
+    "fechafin":"10/10/2024"},
+    {"idProyecto":2,
+    "Nombre":"repsol",
+    "descripcion":"XXXXXaaaaaa",
+    "idCliente":1,
+    "presupuesto":10000,
+    "fechainicio":"10/12/2023",
+    "fechafin":"10/12/2024"}
+]
