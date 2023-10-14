@@ -1,20 +1,8 @@
-@keyframes fondoAnimado {
-    0% {
-        background-color: #276E90; 
-    }
-    50% {
-        background-color: #276E90; 
-    }
-    100% {
-        background-color: #276E90; 
-    }
-}
 
 body{
     margin: 0px;
     padding: 0px;
-    animation: fondoAnimado 5s infinite alternate;
-    
+    background-color: #276E90;
 }
 #container{
     margin: 0px auto;
@@ -25,8 +13,6 @@ body{
     margin-top: 150px; 
     border: 4px solid #0A3143;
     line-height: 50%;
-    animation: bordeContainer 5s infinite;
-    transition: bordeContainer 5s infinite;
 }
 #container h3{
     color: #0A3143;
@@ -40,14 +26,18 @@ body{
 .btn btn-primary{
     background-color: --bs-info;
 }
-
-#linkOlvideContraseña{
-    text-decoration: none;
-    color: #0A3143;
-    font-weight: bold;
-    
+input[type=submit],input[type=reset],#InicioSesionRegistro,#linkRegistrarse,#linkOlvideContraseña{
+    color: #efefef;
+    background-color: #276E90;
+    border-color: #276E90;
 }
-#linkRegistrarse,#InicioSesionRegistro{
+input[type=submit]:hover,input[type=reset]:hover,#InicioSesionRegistro:hover,#linkOlvideContraseña:hover,#linkRegistrarse:hover{
+    color: #efefef;
+    background-color: #0A3143;
+    border-color: #0A3143;
+}
+
+#linkRegistrarse,#InicioSesionRegistro,#linkOlvideContraseña{
     text-decoration: none;
     color: #0A3143;
     font-weight: bold;

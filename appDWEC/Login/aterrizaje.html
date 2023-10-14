@@ -5,32 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="aterrizaje.css">
+    <script src="registro.js"></script>
+    <script src="./jQuery/jQuery.js"></script>
+    <script src="./clases/Pelicula.js"></script>
+    <script src="aterrizaje.js"></script>
     <title>Aterrizaje</title>
 </head>
 <body>
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
-            Home</button>
+          <button class="nav-link " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" onclick="VolverInicioSesion()">
+            Inicio Sesion</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
-            Profile</button>
+          <button  class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
+          Peliculas</button>
         </li>
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
-            Contact</button>
+            Entradas</button>
         </li>
-        
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
+            Cines</button>
+        </li>
+        <!--<h4 id="NombreCine" style="float: right;">Cines Persian</h4>-->
       </ul>
-      
-      <div id="asientos">
+      <hr>
 
+      <div id="divPeliculas">
+
+        <h1>PELICULAS</h1>
+
+        <select name="Filtrar" id="Filtrar" onchange="cargarPeliculas(listaPeliculas.length)">
+          <option value="valornulo">Filtrar por: </option>
+          <option value="Nombre">Nombre</option>
+          <option value="Tipo">Tipo</option>
+        </select>
+
+        <div id="colocarPeliculas">
+        
+        </div>
+        <a href="#" id="MostrarPeliculas" class="btn btn-primary">Mostrar todas las peliculas</a>
       </div>
 
-      <script src="aterrizaje.js"></script>
+
 </body>
 </html>

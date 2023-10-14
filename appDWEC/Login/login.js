@@ -2,7 +2,6 @@
 var listaPersonas = [];
 
 
-
 function inicioSesion(){
     const formulario = document.getElementById("formulario");
     formulario.addEventListener(('submit'),function(event){
@@ -23,6 +22,7 @@ function inicioSesion(){
         alert("Usuario y/o clave erronea");
         bordeusuario.style.border = "3px solid red";
         bordecontraseña.style.border = "3px solid red";
+        console.log("este si carga");
     }
 
 })
@@ -34,7 +34,7 @@ function inicioSesion(){
         window.location.href = "registro.html";
     }
     function cargarUsuarios(){
-$.getJSON('jsonExample/ObjetosInicializados.json',function(datos){
+        $.getJSON('jsonExample/ObjetosInicializados.json',function(datos){
     listaPersonas = datos;
     console.log(listaPersonas);
 });

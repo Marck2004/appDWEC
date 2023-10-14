@@ -1,28 +1,72 @@
-
-    var asientos = document.getElementById("asientos");
-
-
-        var asientosTotales = 24; 
-
-        var contenido = "<table><tbody>";
-            
-    for (let i = 1; i < asientosTotales; i++) {
-            contenido += `<tr class=filaseleccionada>`;
-                for (let j = 1; j < asientosTotales; j++) {
-                    contenido += `<td class=asientoSeleccionado value=${j}><input type=checkbox value=${i}></td>`;
-                }
-                contenido += "</tr>";
-    }
-    contenido += "</tbody></table>";
-    asientos.innerHTML = contenido;
-
-    var filaSeleccionada = document.querySelector('.filaseleccionada');
-        var asientoSeleccionado = document.querySelector('.asientoSeleccionado');
-
-        filaSeleccionada.addEventListener('click',function(evento){
-        console.log("Fila: "+evento.target.value);
-    })
-    asientoSeleccionado.addEventListener('click',function(asiento){
-        console.log("asiento: "+asiento.target.value);
-    })
+    window.addEventListener('load',()=>{
+        cargarPeliculas('6');
+        mostrarPeliculas();
+       
+    });
     
+    listaPeliculas = [];
+    
+    function cargarPeliculas(longuitudarray){
+        $.getJSON("jsonExample/Peliculas.json",function(datos){
+            listaPeliculas=datos;
+            console.log(listaPeliculas);
+            filtrarporNombre();
+            
+                contenido = "<table><tbody>";
+                    
+                var posicionarPeliculas = document.getElementById(`colocarPeliculas`);
+
+            for (let i = 0; i < longuitudarray; i++) {
+                contenido += `<tr>`
+                
+                contenido += `<td><img src=${listaPeliculas[i].imagen}><h1 style=color:white;>${listaPeliculas[i].Nombre}</h1></td>`;
+                i++;
+                contenido += `<td><img src=${listaPeliculas[i].imagen}><h1 style=color:white;>${listaPeliculas[i].Nombre}</h1></td>`;
+                i++;
+                contenido += `<td><img src=${listaPeliculas[i].imagen}><h1 style=color:white;>${listaPeliculas[i].Nombre}</h1></td>`;
+                
+                `</tr>`; 
+            }
+            contenido += `</tbody></table>`;
+            posicionarPeliculas.innerHTML = contenido;  
+        })}
+
+        function mostrarPeliculas(){
+            let mostrarminPelis = document.getElementById('MostrarPeliculas');
+        var seisPelis = true;
+            
+        mostrarminPelis.addEventListener('click',()=>{
+        if(seisPelis){
+            cargarPeliculas(listaPeliculas.length);
+            seisPelis = false;
+        }else if(seisPelis == false){
+                cargarPeliculas('6');
+                seisPelis=true;
+        }
+    });
+    }
+        
+    
+    function filtrarporNombre() {
+        console.log("Entra a la funcion");
+        if(document.getElementById('Filtrar').value == "Nombre"){
+        listaPeliculas.sort((a,b)=>{
+            if (a.Nombre>b.Nombre) return 1
+            else return -1;
+        })
+    }
+        if(document.getElementById('Filtrar').value == "Tipo"){
+            console.log("Entra al if");
+            listaPeliculas.sort((a,b)=>{
+                if (a.tipo>b.tipo) return 1
+                else return -1;
+            })
+        /*
+        var pelisFiltradas = [...listaPeliculas]
+        var filtrarPeliculas = document.getElementById('colocarPeliculas');
+        filtrarPeliculas.innerHTML = cargarPeliculas(listaPeliculas.length);
+        console.log("ENTRA AL IF");
+        console.log(listaPeliculas);
+    */}
+    
+    }

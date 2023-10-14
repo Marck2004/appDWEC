@@ -1,0 +1,128 @@
+[
+    {
+        "Nombre":"Host",
+        "tipo":"Terror",
+        "descripcion":"Durante el confinamiento de 2020, seis amigas realizan una sesión de espiritismo por Zoom que las llevará a aterradoras experiencias. Cuando alguien (o algo) más se une a la llamada, empiezan a preguntarse cómo podrán sobrevivir a esa noche.",
+        "imagen":"./imagenesPeliculas/imagenTerror.jpg",
+        "hora":""
+    },
+    {
+        "Nombre":"Mad Max",
+        "tipo":"Accion",
+        "descripcion":"En un futuro apocalíptico marcado por la escasez de agua, petróleo y energía, crisis económica y el caos social, las pandillas de facciones dominan las carreteras de Australia, donde no existe presencia del Estado por la crisis económica. Se puede apreciar un entorno desordenado y distópico",
+        "imagen":"./imagenesPeliculas/imagenAccion.jpg",
+        "hora":""
+    },
+    {
+        "Nombre":"2067",
+        "tipo":"Ciencia Ficcion",
+        "descripcion":"Una enfermedad mortal causada por el O2 sintético se está extendiendo a nivel mundial y la única esperanza de cura viene en forma de un mensaje del futuro: “Envía a Ethan”. Ethan se ve obligado a viajar al futuro con pocas esperanzas de sobrevivir y sin saber en quién confiar.",
+        "imagen":"./imagenesPeliculas/imagenCienciaFiccion.jpg",
+        "hora":""
+    },
+    {
+        "Nombre":"Señor dame paciencia",
+        "tipo":"Humor",
+        "descripcion":"Cuando la mujer de Gregorio, un banquero muy conservador, muy del Madrid y muy gruñón, fallece repentinamente, éste se ve obligado a cumplir su última voluntad: Pasar un fin de semana con sus hijos y sus parejas en Sanlúcar de Barrameda para esparcir sus cenizas en el Guadalquivir.",
+        "imagen":"./imagenesPeliculas/imagenPeliculaHumor.jpg",
+        "hora":""
+    },
+    {
+        "Nombre":"El origen de la tristeza",
+        "tipo":"Tristeza",
+        "descripcion":"Una explosión amenaza al Barrio, la muerte inesperada de un amigo y un frustrado plan para debutar sexualmente, acercarán al Gavilán y a sus amigos a algunas de las revelaciones que la vida les tiene preparadas: el dolor, la tristeza y el inevitable fin de la infancia.",
+        "imagen":"./imagenesPeliculas/imagenTristeza.jpg",
+        "hora":""
+    },
+    {
+        "Nombre":"Amour",
+        "tipo":"Amor",
+        "descripcion":"George y Anne, los ochenta cumplidos, son dos profesores de música clásica jubilados con una gran cultura. Su hija también se dedica a la música y vive fuera de Francia con su familia. Un día, Anne sufre un infarto. Al volver del hospital, tiene un lado del cuerpo paralizado. El amor que ha unido a la pareja durante tantos años será puesto a prueba.",
+        "imagen":"imagenesPeliculas/imagenAmor.jpg",
+        "hora":""
+    },
+    {
+        "Nombre":"El Conjuro",
+        "tipo":"Terror",
+        "descripcion":"Una pareja de investigadores paranormales, Ed y Lorraine Warren, se enfrenta a fenómenos aterradores en una casa encantada.",
+        "imagen":"./imagenesPeliculas/Elconjuro.jpg",
+        "hora":""
+    },
+    {
+        "Nombre":"Duro de Matar",
+        "tipo":"Accion",
+        "descripcion":"El oficial de policía John McClane se convierte en un héroe inesperado cuando un grupo de terroristas toma un rascacielos en Navidad.",
+        "imagen":"./imagenesPeliculas/durodematar.jpg",
+        "hora":""
+    },
+    {
+        "Nombre":"Blade Runner",
+        "tipo":"Ciencia Ficcion",
+        "descripcion":"En un futuro distópico, un ex detective llamado Rick Deckard debe rastrear y retirar replicantes humanos indistinguibles de androides.",
+        "imagen":"./imagenesPeliculas/bladerunner.jpg",
+        "hora":""
+    },
+    {
+        "Nombre":"Superbad",
+        "tipo":"Humor",
+        "descripcion":"Dos amigos de la escuela secundaria emprenden una hilarante aventura para comprar alcohol antes de una fiesta.",
+        "imagen":"./imagenesPeliculas/superbad.jpg",
+        "hora":""
+    },
+    {
+        "Nombre":"Marley & Me",
+        "tipo":"Tristeza",
+        "descripcion":"La historia de un periodista y su familia mientras comparten sus vidas con un juguetón pero envejecido perro labrador.",
+        "imagen":"./imagenesPeliculas/marleyandme.jpg",
+        "hora":""
+    },
+    {
+        "Nombre":"El Diario de Noa",
+        "tipo":"Amor",
+        "descripcion":" La película cuenta la historia de amor entre Noah Calhoun y Allie Hamilton, quienes se conocen en la década de 1940 y enfrentan desafíos para estar juntos a lo largo de los años.",
+        "imagen":"imagenesPeliculas/eldiariodenoa.jpg",
+        "hora":""
+    },
+    {
+        "Nombre":"El Padrino",
+        "tipo":"Accion",
+        "descripcion":" Dirigida por Francis Ford Coppola, esta película es un clásico del cine que narra la historia de la familia Corleone y su líder, Don Vito Corleone",
+        "imagen":"./imagenesPeliculas/elpadrino.jpg",
+        "hora":""
+    },
+    {
+        "Nombre":"La Lista de Schindler",
+        "tipo":"Tristeza",
+        "descripcion":" Dirigida por Steven Spielberg, esta película está basada en la verdadera historia de Oskar Schindler, quien salvó a judíos durante el Holocausto.",
+        "imagen":"./imagenesPeliculas/lalistadeschindler.jpg",
+        "hora":""
+    },
+    {
+        "Nombre":"El Señor de los Anillos: El Retorno del Rey",
+        "tipo":"Ciencia Ficcion",
+        "descripcion":" La tercera entrega de la trilogía dirigida por Peter Jackson, basada en la obra de J.R.R. Tolkien, ganó 11 premios Oscar, incluyendo Mejor Película.",
+        "imagen":"./imagenesPeliculas/elseñordelosanillos.jpg",
+        "hora":""
+    },
+    {
+        "Nombre":"Titanic",
+        "tipo":"Amor",
+        "descripcion":"Dirigida por James Cameron, esta película cuenta la historia del famoso hundimiento del Titanic y el romance entre Jack y Rose.",
+        "imagen":"./imagenesPeliculas/titanic.jpg",
+        "hora":""
+    },
+    {
+        "Nombre":"Pulp Fiction",
+        "tipo":"Accion",
+        "descripcion":" Dirigida por Quentin Tarantino, esta película es conocida por su narrativa no lineal y diálogos memorables.",
+        "imagen":"./imagenesPeliculas/pulpfiction.jpg",
+        "hora":""
+    },
+    {
+        "Nombre":"Forrest Gump",
+        "tipo":"Humor",
+        "descripcion":"Dirigida por Robert Zemeckis, esta película sigue la vida de Forrest Gump, un hombre con una inteligencia inusualmente baja, pero con un gran corazón.",
+        "imagen":"imagenesPeliculas/forrestgump.jpg",
+        "hora":""
+    }
+]
