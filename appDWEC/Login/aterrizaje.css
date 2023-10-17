@@ -1,3 +1,7 @@
+@font-face {
+    font-family: titulo;
+    src: url("https://fonts.googleapis.com/css2?family=Alumni+Sans+Collegiate+One&family=Raleway:wght@200&family=Space+Mono&display=swap");
+}
 .nav-item{
     float: right;
     margin-left: 25px;
@@ -59,12 +63,13 @@ img{
     color: #efefef;
     background-color: #0A3143;
     border-color: #0A3143;
-}/*
-#pills-tab #NombreCine{
-    display: block;
-    float: rigth;
-    color: white;
-}*/
+}
 hr{
     border: 3px solid #000; border-radius: 300px/10px; height: 0px; text-align: center;;
+}
+#pills-tab #titulo{
+    float: right;
+    margin-left: 55%;
+    color: whitesmoke;
+    font-family: titulo;
 }

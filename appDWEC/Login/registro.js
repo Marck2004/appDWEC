@@ -23,6 +23,7 @@ function validarRegistroUsuario(){
         window.NuevoUsuarioJSON = JSON.stringify(nuevoUsuario)
 
 }
+    
 
 
 
