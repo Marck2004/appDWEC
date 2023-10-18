@@ -1,5 +1,21 @@
 
 #asientos{
-    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid black;
+}
+.asientosOcultos{
+    visibility: hidden;
+}
+.posicionasiento{
+    position: relative;
+    padding-left: 30px; /* Ajusta el espacio para la imagen de fondo */
+    cursor: pointer;
+    background-image: url('asiento.png'); /* Establece la imagen de fondo */
+    background-size: 20px 20px; /* Ajusta el tamaño de la imagen de fondo */
+    background-repeat: no-repeat;
+    background-position: left center; /* Ajusta la posición de la imagen de fondo */
+    width: 20px; /* Ajusta el ancho del área del checkbox */
+    height: 20px;
 }
