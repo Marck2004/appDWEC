@@ -1,11 +1,12 @@
    var listaProyectos = [];
 
     function crearProyectos(){
-        $.getJSON("proyectos.json",function(datos){
-            listaProyectos = datos;
-            cargarTabla(listaProyectos);
-            
-        })
+        listaProyectos.push(new Proyecto(1,'Medicina','Proyeco para Medicina',1234));
+        listaProyectos.push(new Proyecto(2,'Hosteleria','Proyeco para Hosteleria',4321));
+        listaProyectos.push(new Proyecto(3,'Motocross','Proyeco para Motocross',9999));
+        listaProyectos.push(new Proyecto(4,'Arquitectura','Proyeco para Arquitectura',1111));
+        listaProyectos.push(new Proyecto(5,'CNP','Proyeco para CNP',2222));
+        listaProyectos.push(new Proyecto(6,'Autoservicio','Proyeco para Autoservicio',3333));
     }
     crearProyectos();
 
@@ -13,13 +14,13 @@
         location.href = "aterrizaje.html";
     }
 
-    function cargarTabla(lista){
-        
+    function cargarTabla(){
+
         var central = document.getElementById('central');
 
     var contenido = "<table style='border:1px solid red'><tbody>";
 
-    lista.forEach(element => {
+        listaProyectos.forEach(element => {
         contenido += `<tr style='border:1px solid red'>`;
             contenido += `<td style='border:1px solid red'>${element.Nombre}</td>`;
             contenido += `<td style='border:1px solid red'>${element.descripcion}</td>`;
@@ -36,6 +37,7 @@
     central.innerHTML = contenido;
     return contenido;
     }
+onload = cargarTabla;
 
     function ordenarTabla(){
 
@@ -48,7 +50,7 @@
     });
 
     
-    cargarTabla(listaProyectos);
+    cargarTabla();
 
     }
     function imprimirPantalla(){
@@ -61,29 +63,5 @@
                                     <span>Codigo</span>
                                     <input type="text" id="codigo">
                                     </p>
-                                    <p>
-                                    <span>Nombre</span>
-                                    <input type="text" id="Nombre">
-                                    </p>
-                                    <p>
-                                    <span>descripcion</span>
-                                    <input type="text" id="descripcion">
-                                    </p>
-                                    <p>
-                                    <span>idCliente</span>
-                                    <input type="text" id="idCliente">
-                                    </p>
-                                    <p>
-                                    <input type="submit" value="enviar" onclick="crearProyecto()">
-                                    </p>
-                                    <p>
-                                    <input type="reset" value="Cancelar">
-                                    </p>
                                     </div>`;
-        let nuevoCodigo = document.getElementById('codigo').value.trim();
-        let nuevoNombre = document.getElementById('Nombre').value.trim();
-        let nuevaDescripcion = document.getElementById('descripcion').value.trim();
-        let nuevoIdCliente = document.getElementById('idCliente').value.trim();
-    var crearNuevoProyecto = (new Proyecto(nuevoCodigo,nuevoNombre,nuevaDescripcion,nuevoIdCliente));
-    listaProyectos.push(crearNuevoProyecto);
     }

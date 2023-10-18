@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        var listaFotos = ["foto1.jpeg","foto2.jpeg","foto3.jpeg","foto4.jpeg","foto5.jpeg"];
+        var listaPerros = [{
+            "nombre":"Perro1",
+            "raza":"Terrier",
+            "foto":"foto1.jpeg"
+        },
+        {
+            "nombre":"Perro2",
+            "raza":"Doberman",
+            "foto":"foto2.jpeg"
+        },
+        {
+            "nombre":"Perro3",
+            "raza":"Dalmata",
+            "foto":"foto3.jpeg"
+        },
+        {
+            "nombre":"Perro4",
+            "raza":"Bulldog",
+            "foto":"foto4.jpeg"
+        },
+        {
+            "nombre":"Perro5",
+            "raza":"Salchicha",
+            "foto":"foto5.jpeg"
+        }];
+            function mostrarFotos(){
+                var parrafo = document.createElement("p");
+                var imagen = document.createElement("img");
+                imagen.src = listaFotos[0];
+                parrafo.appendChild(imagen);
+                document.body.appendChild(parrafo);
+                //document.body.insertAdjacentHTML("beforeend",`<p><img src=${listaFotos}></p>`)
+            }
+            function pintarFotoPerro(foto){
+                window.open(foto);
+            }
+            function mostrarPerros(){
+                /*
+                for (let i = 0; i < listaPerros.length; i++) {
+                    var div = document.createElement("div");
+                    var parrafo = document.createElement("p");
+                    var texto = document.createTextNode(`Nombre: ${listaPerros[i].nombre}`)
+                    parrafo.appendChild(texto);
+                    div.appendChild(parrafo);
+                    document.body.appendChild(div);
+                    var boton = document.createElement("button");
+                    document.body.appendChild(boton);
+                    boton.addEventListener("click",()=>pintarFotoPerro(listaPerros[i].foto));
+                }*/
+                
+                listaPerros.forEach(element => {
+                    document.body.insertAdjacentHTML("beforeend",
+                    `<div><p>Nombre: ${element.nombre}
+                    <button type=button onclick="pintarFotoPerro('${element.foto}')">Ver foto</button>
+                    </p></div>`);
+
+                });
+                
+            }
+            function cambiarImagen(evento){
+                document.getElementsByTagName("img")[0].src = listaFotos[evento.target.value];
+            }
+            onload = ()=>{
+            document.getElementById('boton1').addEventListener('click',mostrarFotos);
+            document.getElementsByTagName("select")[0].addEventListener('change',cambiarImagen);
+            mostrarPerros();
+            }
+            
+    </script>
+    <title>Ejemplo 2</title>
+</head>
+<body>
+    <p><button type="button" id="boton1">Parte 1</button></p>
+    <p><select id="select">
+        <option value="0">Primero</option>
+        <option value="1">Segundo</option>
+        <option value="2">Tercero</option>
+        <option value="3">Cuarto</option>
+        <option value="4">Quinto</option>
+    </select></p>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function ampliar(){
+            let ancho = document.getElementsByTagName("img")[0].width;
+            document.getElementsByTagName("img")[0].width = ancho * 2;
+            alert(1);
+        }
+        function cambiarcolor() {
+            document.getElementsByTagName("div")[0].style.backgroundColor = "red";
+            alert(2);
+        }
+        function addEvento(){
+            document.getElementsByTagName("img")[0].addEventListener("mouseover",ampliar);
+        }
+        onload = function(){
+            document.getElementById('campo1').addEventListener("blur",mostrarId);
+            document.getElementById('campo2').addEventListener("blur",mostrarId);
+            document.getElementById('campo3').addEventListener("blur",mostrarId);
+            document.getElementById('campo4').addEventListener("blur",mostrarId);
+            document.getElementById('campo5').addEventListener("blur",mostrarId);
+        }
+        function mostrarId(evento){
+            alert ("El ID es: "+evento.target.id);
+        }
+    </script>
+</head>
+<body>
+        <div style="background-color: blueviolet;">
+            <p>HOLA</p>
+    <img src="./mario.png" alt="mario bros">
+        </div>
+        <button id="botonEvento" onclick="addEvento()">AÑADIR EVENTO</button>
+        <p>
+            <span>campo1: </span>
+            <input type="text" name="campo1" id="campo1">
+            <input type="text" name="campo2" id="campo2">
+            <input type="text" name="campo3" id="campo3">
+            <input type="text" name="campo4" id="campo4">
+            <input type="text" name="campo5" id="campo5">
+        </p>
+</body>
+</html>
