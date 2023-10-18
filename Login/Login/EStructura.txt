@@ -1,6 +1,0 @@
-
-    CLASES:
-CLIENTE(email,tlf,nombreUsuario,nuevaContraseña)
-PELICULA(MIN 2 ATRIBUTOS)
-SALA(MIN 2 ATRIBUTOS)
-ENTRADA(MIN 2 ATRIBUTOS)

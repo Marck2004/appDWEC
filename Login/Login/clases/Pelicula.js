@@ -1,5 +1,0 @@
-class Pelicula{
-    constructor(){
-
-    }
-}
