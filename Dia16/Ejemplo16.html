@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        onload=()=>{
+        document.getElementsByTagName("img")[0].
+        addEventListener("click",f1);
+        document.getElementsByTagName("button")[0].
+        addEventListener("click",f2);
+        document.getElementsByTagName("div")[0].
+        addEventListener("click",f3);
+        document.getElementsByTagName("a")[0].
+        addEventListener("click",f4);
+    }
+    function f1(){
+        alert(1);
+    }
+    function f2() {
+        document.getElementsByTagName("input")[0].value = "Hola";
+    }
+    function f3(){
+        alert(3);
+    }
+    function f4(){
+        alert(4);
+    }
+        </script>
+    <title>Document</title>
+</head>
+<body>
+    <div style="height: 3000px;width: 300px;background-color: red;">
+    <img src="./foto1.jpeg" alt="foto animal"><br>
+    <button>Pulsame</button>
+    </div>
+    <input type="text" id="caja1">
+    <a href="#">Pulsame</a>
+</body>
+</html>

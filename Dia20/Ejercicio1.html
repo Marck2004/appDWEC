@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        onload = ()=>{
+            
+            console.log(document.querySelectorAll("img[alt]"));
+            console.log(document.querySelectorAll("img[alt='Pelicula']"));
+         //   console.log(document.querySelectorAll('img["alt"]'));
+            document.querySelector("p").outerHTML="<h1>hola</h1>";
+            document.getElementsByTagName("p")[1].innerHTML="<h1>adios</h1>";
+
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <p>hola</p>
+        <p>chao</p>
+        <p>venga</p>
+    </div>
+    <div style="position:absolute;top:700px">
+        <img src="../Login/imagenesPeliculas/Elconjuro.jpg" alt="Pelicula">
+    </div>
+    <div><img src="../Login/imagenesPeliculas/superbad.jpg" alt></div>
+    <div><img src="../Login/imagenesPeliculas/elseñordelosanillos.jpg" ></div>
+    <button type="button">PULSAME</button>
+</body>
+</html>
