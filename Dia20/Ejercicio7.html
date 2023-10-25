@@ -6,6 +6,13 @@
 <script type="text/javascript">
     onload = () =>{
     var boton = document.getElementsByTagName("button")[0].addEventListener("click",guardarCookie);
+        let trozosCookie = document.cookie.split(";");
+        trozosCookie.forEach(element => {
+            element.split("=");
+            element.forEach(valor => {
+                console.log(valor);
+            });
+        });
     }
 
     function guardarCookie() {
