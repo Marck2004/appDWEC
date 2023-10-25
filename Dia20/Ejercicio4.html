@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio4</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Ejercicio 3</title>
+<script type="text/javascript">
+
+function anade() {
+    //1
+    let elementoLista = document.getElementById("lista");
+    //let elementoLi = document.createElement("li");
+    //elementoLi.innerHTML = "HOLA";
+    //elementoLista.appendChild(elementoLi);
+
+    //2
+    //elementoLista.innerHTML += "<li>HOLA</li>";
+    //3
+    /*let elementoLi = document.createElement("li");
+    elementoLi.appendChild(document.createTextNode("HOLA"));
+    elementoLista.insertBefore(elementoLi,elementoLista.firstElementChild);*/
+    //4
+    elementoLista.insertAdjacentHTML("afterbegin","<li>HOLA</li>");
+    
+}
+</script>
+</head>
+<body>
+<ul id="lista">
+	<li>Lorem ipsum dolor sit amet</li>
+	<li>Consectetuer adipiscing elit</li>
+	<li>Sed mattis enim vitae orci</li>
+	<li>Phasellus libero</li>
+	<li>Maecenas nisl arcu</li>
+</ul>
+
+<input type="button" value="Anadir elemento" onclick="anade();">
+
+</body>
+</html>
+</body>
+</html>

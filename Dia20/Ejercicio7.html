@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Ejercicio 4</title>
+<script type="text/javascript">
+    onload = () =>{
+    var boton = document.getElementsByTagName("button")[0].addEventListener("click",guardarCookie);
+    }
+
+    function guardarCookie() {
+        document.cookie = "nombre= "+document.getElementsByTagName("input")[0].value;
+        document.cookie = "edad="+document.getElementsByTagName("input")[1].value;
+        document.cookie = "ultimoAcceso=HOLA"+document.getElementsByTagName("input")[2].value;
+    }
+
+</script>
+</head>
+<body>
+NOMBRE:<input type=text><br>
+EDAD:<input type=text><br>
+ULTIMO ACCESO:<input type=text><br>
+<button type=button>GRABAR</button><br>
+TEXTO 1:<input type=text id=texto1><br>
+<a href=”#”>ENLACE</a>
+</body>
+</html>
