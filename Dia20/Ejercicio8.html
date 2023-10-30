@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Ejercicio 4</title>
+<script type="text/javascript">
+    onload = () =>{
+        validar();
+        document.getElementsByTagName("a")[0].addEventListener("click",mostrarVentana);
+
+    }
+    function validar(){
+        let nombre = document.getElementsByTagName("input")[0].value;
+        let Numeros =  document.getElementsByTagName("input")[1].value;
+        var expresionRegularNombre = /^[A-Za-z\s]{2,50}$/;
+        var expresionRegularNumeros = /^[0-9]+$/;
+        if(!expresionRegularNombre.test(nombre)){
+            document.getElementsByTagName("input")[0].style.readOnly = "true";
+        }
+        if(!expresionRegularNumeros.test(nombre)){
+            document.getElementsByTagName("input")[1].style.readOnly = "true";
+        }
+    }
+    function mostrarVentana(){
+        let abrir = window.open();
+            abrir.document.write(`<p><a href='#' id='0'>1ºDAW</a></p>
+            <p><a href='#' id='1'>2ºDAW</a></p>
+            <p><a href='#' id='2'>1ºDAM</a></p>
+            <p><a href='#' id='3'>2ºDAM</a></p>
+            <p><a href='#' id='4'>1ºASIR</a></p>
+            <p><a href='#' id='5'>2ºASIR</a></p>`);
+            let array = abrir.document.querySelectorAll("a");
+
+           array.forEach((element,indice) => {
+              document.getElementById(`0`).addEventListener("click",()=>{
+                abrir.document.close();
+                abrir.close();
+              })
+           });
+                
+            };
+ 
+</script>
+</head>
+<body>
+NOMBRE ALUMNO:<input type="text" id="nombre"><br>
+CODIGO ALUMNO:<input type="text" id="nombre2"><br>
+FECHA NACIMIENTO:<input type="text" id="nombre3"><br>
+CURSO:<input type="text" id="nombre4" disabled><a href="">Seleccionar</a><br>
+<button>ALTA</button><button>IMPRIMIR</button>
+</body>
+</html>

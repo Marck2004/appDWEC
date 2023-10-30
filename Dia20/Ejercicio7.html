@@ -7,28 +7,44 @@
     onload = () =>{
     var boton = document.getElementsByTagName("button")[0].addEventListener("click",guardarCookie);
         let trozosCookie = document.cookie.split(";");
-        trozosCookie.forEach(element => {
-            element.split("=");
-            element.forEach(valor => {
-                console.log(valor);
-            });
+        setInterval(convertirLetra,3000);
+        trozosCookie.forEach((element,indice) => {
+            console.log(element.split("=").splice(1,1));
+            document.getElementsByTagName("input")[indice].value = element.split("=").splice(1,1);
         });
+        document.getElementsByTagName("a")[0].addEventListener("click",abrirVentana);
     }
 
     function guardarCookie() {
         document.cookie = "nombre= "+document.getElementsByTagName("input")[0].value;
         document.cookie = "edad="+document.getElementsByTagName("input")[1].value;
-        document.cookie = "ultimoAcceso=HOLA"+document.getElementsByTagName("input")[2].value;
+        document.cookie = "ultimoAcceso="+document.getElementsByTagName("input")[2].value;
+        document.cookie = "texto 1="+document.getElementById("texto1").value;
+    }
+    function convertirLetra(){
+        let caja = document.getElementById("text3");
+          caja.value = String.fromCharCode(Math.floor(Math.random()*(90-65+1)+65));
+    }
+    function abrirVentana() {
+        let abrir= window.open();
+        abrir.document.write("<p>Texto 2: <input type='text' id='TEXTO2'></p><p><button type='button' id='BOTON2'>BOTON2</button></p>");
+        let boton = abrir.document.getElementById("BOTON2");
+        boton.addEventListener("click",()=>{
+            document.getElementById("texto1").value = abrir.document.getElementById("TEXTO2").value;
+            abrir.document.close();
+            abrir.close();
+        })
     }
 
 </script>
 </head>
 <body>
-NOMBRE:<input type=text><br>
-EDAD:<input type=text><br>
-ULTIMO ACCESO:<input type=text><br>
-<button type=button>GRABAR</button><br>
-TEXTO 1:<input type=text id=texto1><br>
-<a href=”#”>ENLACE</a>
+NOMBRE:<input type="text"><br>
+EDAD:<input type="text"><br>
+ULTIMO ACCESO:<input type="text"><br>
+<button type="button">GRABAR</button><br>
+TEXTO 1:<input type="text" id="texto1"><br>
+LETRA : <input type="text" name="text" id="text3">
+<a href="#">ENLACE</a>
 </body>
 </html>
