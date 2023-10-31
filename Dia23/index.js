@@ -9,6 +9,11 @@ $.getJSON("comidas.json",((datos)=>{
 
 onload = ()=>{
     leerCarritoDeCookie();
+    document.querySelector(".imagenPequena").addEventListener("click",() => {
+       
+            mostrarCarrito();
+
+    });
 }
 
 function leerCarritoDeCookie(){
@@ -77,5 +82,44 @@ function pintarTablaComidas(listaComidas){
 
             document.cookie = "carrito="+JSON.stringify(carrito);
         }
+    }
+
+    function mostrarCarrito(){
+        let carritoMostrar = document.getElementById("carrito");
+
+        var contenido2 = `<table style='border:2px solid black;'><tbody>`;
+            carrito.forEach((comida) =>{
+                var posicionBuscar = arrComidas.findIndex((comidas) => comidas.idComida == comida.idComida);
+
+                contenido2 += `<tr style='border:2px solid black;'>`;
+                
+                    contenido2 += `<td style='border:2px solid black;'>${arrComidas[posicionBuscar].idComida}</td>`;
+                    contenido2 += `<td style='border:2px solid black;'>${arrComidas[posicionBuscar].descripcion}</td>`;
+                    contenido2 += `<td style='border:2px solid black;'>${comida.cantidad}</td>`;
+
+                contenido2 += `</tr>`;
+            });
+            contenido2 += `</tbody></table>`;
+
+            
+            var sumaCant = 0;
+            var precios = 0;
+            carrito.forEach((cantidadTotal) =>{
+                var buscarPrecio = carrito.findIndex((precio) => precio.idComida == cantidadTotal.idComida);
+                sumaCant += cantidadTotal.cantidad;
+
+                if(cantidadTotal.cantidad > 1){
+                    precios += arrComidas[buscarPrecio].precio * cantidadTotal.cantidad;
+                }else{
+                precios += arrComidas[buscarPrecio].precio;
+
+            }
+            });
+
+                
+            contenido2 += `Cantidad: ${sumaCant} Precio: ${precios}`;
+        //contenido2 += `Cantidad: ${sumaCant}`;
+        carritoMostrar.innerHTML = contenido2;
+            
     }
     
