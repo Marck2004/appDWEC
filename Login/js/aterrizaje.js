@@ -1,9 +1,9 @@
     window.addEventListener('load',()=>{
-        cargarPeliculas('6');
-        mostrarPeliculas();
-       
+        mostrarPeliculas();  
     });
+    cargarPeliculas('6');
     
+
     listaPeliculas = [];
     
     function cargarPeliculas(longuitudarray){
@@ -19,20 +19,21 @@
             for (let i = 0; i < longuitudarray; i++) {
                 contenido += `<tr>`
                 
-                contenido += `<td><img src=${listaPeliculas[i].imagen}><h1 style=color:white;>${listaPeliculas[i].Nombre}</h1></td>`;
+                contenido += `<td><img src=${listaPeliculas[i].imagen} onclick='aterrizarAsientos()'><h1 style=color:white;>${listaPeliculas[i].Nombre}</h1></td>`;
                 i++;
-                contenido += `<td><img src=${listaPeliculas[i].imagen}><h1 style=color:white;>${listaPeliculas[i].Nombre}</h1></td>`;
+                contenido += `<td><img src=${listaPeliculas[i].imagen} onclick='aterrizarAsientos()'><h1 style=color:white;>${listaPeliculas[i].Nombre}</h1></td>`;
                 i++;
-                contenido += `<td><img src=${listaPeliculas[i].imagen}><h1 style=color:white;>${listaPeliculas[i].Nombre}</h1></td>`;
+                contenido += `<td><img src=${listaPeliculas[i].imagen} onclick='aterrizarAsientos()'><h1 style=color:white;>${listaPeliculas[i].Nombre}</h1></td>`;
                 
                 `</tr>`; 
             }
             contenido += `</tbody></table>`;
             posicionarPeliculas.innerHTML = contenido;  
-        })}
+        })
+    }
 
-        function mostrarPeliculas(){
-            let mostrarminPelis = document.getElementById('MostrarPeliculas');
+    function mostrarPeliculas(){
+        let mostrarminPelis = document.getElementById('MostrarPeliculas');
         var seisPelis = true;
             
         mostrarminPelis.addEventListener('click',()=>{
@@ -69,4 +70,9 @@
         console.log(listaPeliculas);
     */}
     
+    }
+    function aterrizarAsientos(){
+        
+
+            window.location.href = "sacarentrada.html";
     }

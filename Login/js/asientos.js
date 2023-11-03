@@ -13,7 +13,7 @@ window.addEventListener('load',()=>{
                 contenido += `<tr>`;
 
             for (let j = 0; j < cantidadAsietos; j++) {
-                contenido += `<td><input type=checkbox class='posicionasiento' id="F${i}-C${j}" onfocus='numAsiento("${i}","${j}")'></td>`;
+                contenido += `<td><input type=checkbox class='posicionasiento' id="F${i}-C${j}" onclick='numAsiento("${i}","${j}")'></td>`;
             }
              contenido += `</tr>`;
         }

@@ -8,25 +8,32 @@ $.getJSON("comidas.json",((datos)=>{
 }));
 
 onload = ()=>{
-    leerCarritoDeCookie();
+    leerCarritoInicial();
     document.querySelector(".imagenPequena").addEventListener("click",() => {
        
             mostrarCarrito();
 
     });
 }
-
-function leerCarritoDeCookie(){
-    let datosCookie = document.cookie.split(";");
+function actualizarCarrito(){
+    localStorage.setItem("carrito",JSON.stringify(carrito));
+    document.getElementById("contadorCarrito").innerHTML = carrito.length;
+}
+function leerCarritoInicial(){
+    /*let datosCookie = document.cookie.split(";");
         datosCookie.forEach( (cookie) => {
             let nombre = cookie.split("=")[0];
             let valor = cookie.split("=")[1]; 
             if (nombre == "carrito"){
                 carrito = JSON.parse(valor);  
             }
-        });
+        });*/
+        if(localStorage.getItem("carrito")){
+            carrito = JSON.parse(localStorage.getItem("carrito"));  
         document.getElementById("contadorCarrito").innerHTML = carrito.length;
-}
+        
+        }
+    }
 
 function pintarTablaComidas(listaComidas){
     let central = document.getElementById("central");
