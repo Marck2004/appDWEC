@@ -26,7 +26,7 @@ var ciudades = ['Avila','Barcelona','Burgos','Madrid','Toledo','Sevilla','Huelva
     });
     }
 
-    function eliminarCeldas(){
+    /*function eliminarCeldas(){
         setInterval(()=>{
             let tabla = document.getElementById("ruta");
             let filas = tabla.getElementsByTagName("tr");
@@ -37,16 +37,65 @@ var ciudades = ['Avila','Barcelona','Burgos','Madrid','Toledo','Sevilla','Huelva
             filas.children[columnas.length].remove();
         },3000);
 
-    }
+    }*/
 
+    function elegirDestino(nombre){
+        
+        let tablaDestino = document.getElementById("destinos");
+
+           let trDestino = tablaDestino.getElementsByTagName("tr")[1];
+        
+            trDestino.style.display = "none";
+
+        let arrTd = [...document.getElementById("ruta").querySelectorAll("td")];
+        
+            let posTd = arrTd.findIndex((td) => td.style.backgroundColor === nombre.style.backgroundColor && td.parentNode.style.backgroundColor === td.style.backgroundColor);
+
+        
+        let crearTr = document.createElement("tr");
+
+            let crearTd = document.createElement("td");
+            let crearTd2 = document.createElement("td");
+            let crearTd3 = document.createElement("td");
+
+            let texto = document.createTextNode(nombre.innerHTML);
+            let texto2 = document.createTextNode(nombre.innerHTML);
+            let texto3 = document.createTextNode(arrTd[posTd].innerHTML);
+
+           tablaDestino.appendChild(crearTr);
+
+            crearTd.appendChild(texto2);
+            
+            crearTd2.appendChild(texto);
+
+            
+
+            crearTd3.appendChild(texto3);
+            
+            crearTr.appendChild(crearTd);
+            crearTr.appendChild(crearTd2);
+            crearTr.appendChild(crearTd3);
+
+        
+        /*contenido += `<td>${nombre.innerHTML}</td><td>${nombre.innerHTML}</td><td>${arrTd[posTd].innerHTML}</td>`;    
+        trDestino.innerHTML = contenido;
+*/
+    }
     
         onload = () =>{
-            console.log(document.querySelectorAll("td"));
+            
             document.querySelectorAll("td").forEach((nombre) => {
+               
                 nombre.addEventListener("click",()=>{
+                    console.log(nombre);
                     pintarTabla(nombre);
+                    document.querySelector("button[type=button]").addEventListener("click",()=>{
+                        elegirDestino(nombre);
+                    });
                 })
+            
             })
-            eliminarCeldas();
+            //eliminarCeldas();
+            
         }
     
