@@ -40,7 +40,7 @@ listaCiudades.push(ciudad13);
             letras = letras.reverse();
 
           contenido += "<tr>";
-            contenido += `<td><div style='width:40px;height:40px;border:2px solid black;margin:0px auto'></div></td>`;
+            contenido += `<td><input type='number' style='width:40px;height:40px;border:2px solid black;margin:0px auto'></input></td>`;
             contenido += `<td style='border:2px solid black;'>${ciudades[0]}</td>`;
             contenido += `<td style='border:2px solid black;'>${letras.join('')}</td>`;
             contenido += `<td style='border:2px solid black;'>${ciudades[2]}</td>`;
@@ -107,19 +107,60 @@ listaCiudades.push(ciudad13);
 
     function filtrarDist(parametro){
         let filtrarDisc = listaCiudades;
+        let radios = document.querySelectorAll("input[type='radio']");
+        let valorRadio;
+        radios.forEach((radio)=>{
+            if(radio.checked){
+                valorRadio=radio.value;
+            }
+        });
         if(parametro == "distancia"){
-            if(document.querySelector(`input[name=${parametro}]`).value == 1){
+            if(valorRadio == 1){
                 filtrarDisc = listaCiudades.filter((distancia) => distancia[2] < 1000);
                 console.log("entra");
                 mostrarTabla(filtrarDisc);
-            }else if(document.querySelector(`input[name=${parametro}]`).value == 2){
+            }else if(valorRadio == 2){
                 filtrarDisc = listaCiudades.filter((distancia) => distancia[2] > 1000 && distancia[2] < 2000);
                 mostrarTabla(filtrarDisc);
-            }else if(document.querySelector(`input[name=${parametro}]`).value == 3){
+            }else if(valorRadio == 3){
                 filtrarDisc = listaCiudades.filter((distancia) => distancia[2] > 2000);
                 mostrarTabla(filtrarDisc);
             }
         }
+    }
+    function filtarPais(parametro){
+        
+        let paisFiltrado = listaCiudades.filter((ciudades) => ciudades[1].slice(2) == document.getElementById(parametro).value.toUpperCase());
+        console.log(paisFiltrado);
+        mostrarTabla(paisFiltrado);
+    }
+    function mostrarRuta(){
+        let div = document.getElementById("rutaCiudades");
+
+        let input = document.querySelectorAll("input[type='number']");
+        let listaIndice = []; 
+
+            input.forEach((numero,Indice)=>{
+                if(numero.value >= 1){
+                    listaIndice.push([numero.value,listaCiudades[Indice][0]]);  
+                    //listaIndice.push(listaCiudades[Indice][0]);
+                }
+                
+            })
+            listaIndice.sort((a,b)=>
+                a[0]-b[0]
+            );
+            listaIndice.forEach((valor,Indice)=>{
+                valor[0] = Indice+1;
+            })
+
+            console.log(listaIndice);
+            listaIndice.forEach((numeros)=>{
+            div.innerHTML += numeros+"\n";
+        })
+    }
+    function comprobarFechas(){
+        
     }
     onload = () =>{
         mostrarTabla(listaCiudades);
