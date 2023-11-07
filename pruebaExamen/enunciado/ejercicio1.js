@@ -40,7 +40,7 @@ var ciudades = ['Avila','Barcelona','Burgos','Madrid','Toledo','Sevilla','Huelva
     }*/
 
     function elegirDestino(nombre){
-        
+        console.log(nombre);
         let tablaDestino = document.getElementById("destinos");
 
            let trDestino = tablaDestino.getElementsByTagName("tr")[1];
@@ -64,11 +64,10 @@ var ciudades = ['Avila','Barcelona','Burgos','Madrid','Toledo','Sevilla','Huelva
 
            tablaDestino.appendChild(crearTr);
 
-            crearTd.appendChild(texto2);
+            crearTd.appendChild(texto);
             
-            crearTd2.appendChild(texto);
+            crearTd2.appendChild(texto2);
 
-            
 
             crearTd3.appendChild(texto3);
             
@@ -76,7 +75,8 @@ var ciudades = ['Avila','Barcelona','Burgos','Madrid','Toledo','Sevilla','Huelva
             crearTr.appendChild(crearTd2);
             crearTr.appendChild(crearTd3);
 
-        
+            tablaDestino.getElementsByTagName("tr")[3].style.display = "none";
+            
         /*contenido += `<td>${nombre.innerHTML}</td><td>${nombre.innerHTML}</td><td>${arrTd[posTd].innerHTML}</td>`;    
         trDestino.innerHTML = contenido;
 */
@@ -87,11 +87,11 @@ var ciudades = ['Avila','Barcelona','Burgos','Madrid','Toledo','Sevilla','Huelva
             document.querySelectorAll("td").forEach((nombre) => {
                
                 nombre.addEventListener("click",()=>{
-                    console.log(nombre);
                     pintarTabla(nombre);
                     document.querySelector("button[type=button]").addEventListener("click",()=>{
                         elegirDestino(nombre);
                     });
+                    
                 })
             
             })
