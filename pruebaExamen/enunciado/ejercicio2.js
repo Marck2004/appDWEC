@@ -22,7 +22,7 @@ var arrGlobal = Vinilos.concat(Laminas.concat(Otro));
                             contenido += `<td style='border:2px solid black;'><img src='pagina2_files/${lista[contador]}' id='Img${contador}' style='width:100px;height:100px;' >
                             <button type='button' onclick='comprarCuadro(${contador})' id='boton${contador}'>CONTRATAR</button><br>
                             <button type='button' onclick='alquilarCuadro(${contador})' id='alquilar${contador}'>ALQUILAR</button>
-                            <br><p id='cant'>Cantidad: <input type='number' style='width:100px;' id='${contador}'></input></p>
+                            <br><p id='cant${contador}'>Cantidad: <input type='number' style='width:100px;' id='${contador}'></input></p>
                             <p id='parrafo${contador}'>Duracion:<select id='seleccionarCant${contador}'><option>Escoge</option></select> </p>
                             </td>`;
                             contador++;
@@ -53,11 +53,25 @@ var arrGlobal = Vinilos.concat(Laminas.concat(Otro));
 
     function comprarCuadro(idContador){
         if(document.getElementById(idContador).value >= 1){
-            sessionStorage.setItem('imagen',`'pagina2_files/${arrGlobal[idContador]}'`);
-            sessionStorage.setItem('cantidad',document.getElementById(idContador).value);
-            sessionStorage.setItem('Operacion',`Compra`);
-            document.getElementById("cant").style.display = "none";
+            localStorage.setItem(`imagen${idContador}`,`'pagina2_files/${arrGlobal[idContador]}'`);
+            localStorage.setItem(`cantidad${idContador}`,document.getElementById(idContador).value);
+            localStorage.setItem(`Operacion${idContador}`,`Compra`);
+
+            document.getElementById(`cant${idContador}`).style.display = "none";
             document.getElementById(`boton${idContador}`).disabled = true;
+
+
+            let divCentral = document.getElementById("derecha");
+
+            let enlaceCompras = divCentral.getElementsByTagName("a")[0];
+    
+
+    enlaceCompras.addEventListener("click",(evento)=>{
+        evento.preventDefault();
+        informacionCompra(idContador);
+    });
+
+
         }else{
             alert("El valor debe ser mayor a 0");
         }
@@ -69,22 +83,58 @@ var arrGlobal = Vinilos.concat(Laminas.concat(Otro));
 
         if(document.getElementById(idContador).value >= 1 && selectValor != "Escoge"){
 
-            sessionStorage.setItem('imagenAlquiler',`'pagina2_files/${arrGlobal[idContador]}'`);
-            sessionStorage.setItem('cantidadAlquiler',document.getElementById(idContador).value);
-            sessionStorage.setItem('DuracionAlquiler',selectValor);
-            sessionStorage.setItem('OperacionAlquiler',`Alquiler`);
+            localStorage.setItem(`imagenAlquiler${idContador}`,`'pagina2_files/${arrGlobal[idContador]}'`);
+            localStorage.setItem(`cantidadAlquiler${idContador}`,document.getElementById(idContador).value);
+            localStorage.setItem(`DuracionAlquiler${idContador}`,selectValor);
+            localStorage.setItem(`OperacionAlquiler${idContador}`,`Alquiler`);
 
 
             document.getElementById(`parrafo${idContador}`).style.display = "none";
             document.getElementById(`Img${idContador}`).style.display = "none";
-            document.getElementById("cant").style.display = "none";
+            document.getElementById(`cant${idContador}`).style.display = "none";
             document.getElementById(`boton${idContador}`).disabled = true;
             document.getElementById(`alquilar${idContador}`).disabled = true;
+
+            
+
+    
 
         }else{
             alert("El valor de la cantidad debe ser mayor a 0 y la duracion debe ser un numero");
         }
     }
+
+    function informacionCompra(idContador){
+
+           let abrirVentana = window.open();
+
+                abrirVentana.document.body.innerHTML += `<h1>Compra<h1>`;
+
+                    let contenido = `<table><tbody><th>Imagen</th>-----<th>Operacion</th>-----<th>Cantidad</th>`;
+            
+                        for (let i = 0; i < (localStorage.length/2)-1; i++) {
+                            
+                            
+                            contenido += `<tr>`;
+                            
+                                contenido += `<td>${localStorage.getItem(`imagen${idContador}`)}</td>`;
+                                
+                                contenido += `<td>${localStorage.getItem(`Operacion${idContador}`)}</td>`;
+                                
+                                contenido += `<td>${localStorage.getItem(`cantidad${idContador}`)}</td>`;
+                                
+                            contenido += `</tr>`;
+                        }
+                        
+                    contenido += `</tbody></table>`;
+
+                    abrirVentana.document.body.innerHTML += contenido;
+                    
+        //let enlaceAlquilar = divCentral.getElementsByTagName("a")[1];
+
+        //let enlaceGlobal = divCentral.getElementsByTagName("a")[2];
+    }
+
 
 onload = () =>{
     let selectCuadros = document.getElementById("central").getElementsByTagName("select")[0];
@@ -93,7 +143,6 @@ onload = () =>{
         
         let posicionSeleccionada = selectCuadros.options[selectCuadros.selectedIndex];
         let valorOption = posicionSeleccionada.textContent;
-        
 
         switch (valorOption) {
 
@@ -115,5 +164,9 @@ onload = () =>{
         }
 
     })
+
+    
+    
     mostrarCuadros(arrGlobal);
+
 }
