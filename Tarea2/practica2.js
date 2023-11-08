@@ -28,6 +28,32 @@ listaCiudades.push(ciudad11);
 listaCiudades.push(ciudad12);
 listaCiudades.push(ciudad13);
 
+    var Ciudad = new Object();
+
+    var Mapa = {
+        "lista": listaCiudades,
+        "añadirCiudad" : function addCiudad(ciudad){
+            listaCiudades.push(ciudad);
+        },
+        "eliminarCiudad" : function removeCiudad(){
+            listaCiudades.pop();
+        },
+        "mostrarLista" : function mostrarLista(){
+            
+                mostrarTabla(listaCiudades);
+            
+        },
+        "ordenarLista" :function ordenarLista(){
+            listaCiudades.sort();
+        },
+        "filtrarLista" : function filtrarLista(nombre){
+            let arrFiltradoAux = listaCiudades.filter((ciudad) => ciudad[0] == nombre);
+            mostrarTabla(arrFiltradoAux);
+        }
+
+    }
+
+
     function mostrarTabla(listaCiudades){
         let tabla = document.getElementById("tablaCiudades");
         
@@ -162,6 +188,77 @@ listaCiudades.push(ciudad13);
     function comprobarFechas(){
         
     }
+    
+    class Coches{
+        constructor(Id,Marca,Combustible,Caballos,Precio,Color,Extras,Numpuertas){
+            this.Id = Id;
+            this.Marca = Marca;
+            this.Combustible = Combustible;
+            this.Caballos = Caballos;
+            this.Precio = Precio;
+            this.Color = Color;
+            this.Extras = Extras;
+            this.Numpuertas = Numpuertas;
+        }
+    }
+
+    class Empleados{
+        constructor(Nombre,Apellidos,FechaNac,NIF){
+            this.Nombre = Nombre;
+            this.Apellidos = Apellidos;
+            this.FechaNac = FechaNac;
+            this.NIF = NIF;
+        }
+
+    }
+
+    class Concesionario{
+        constructor(Nombre,Direccion,NIF,Telefono){
+            this.Nombre = Nombre;
+            this.Direccion = Direccion;
+            this.NIF = NIF;
+            this.Telefono = Telefono;
+            this.Coches = [];
+            this.empleados = [];
+        }
+        NuevoCoche(){
+            var identificador=prompt("Introduce el identificador del coche");
+var marca=prompt("Introduce la marca del coche");
+var combustible=prompt("Introduce el combustible del coche");
+var caballos=prompt("Introduce los caballos del coche");
+var precio=prompt("Introduce el precio del coche");
+var color=prompt("Introduce el color del coche");
+var extras=prompt("Introduce los extras del coche");
+var puertas=prompt("Introduce el numero de puertas");
+            this.Coches.push(new Coches(identificador,marca,combustible,caballos,precio,color,extras,puertas));
+        }
+        EliminarCoche(){
+            let buscarId = prompt("Introduce identificador a buscar");
+
+                let pos = this.Coches.findIndex((coche)=> coche.Id == buscarId);
+
+                pos == -1 
+                ? alert("NO EXISTE NINGUN COCHE CON ESE IDENTIFICADOR")
+                : this.Coches.splice(pos,1);
+        }
+    }
+
+        function NuevoEmpleado(){
+            let nombreEmpleado = prompt("Introduce tu nombre");
+            let Apelldos = prompt("Introduce apellidos");
+            let FechaNacimiento = prompt("Fecha de Nacimiento");
+            let NIFemp = promt("Introduzca el DNI");
+
+            this.empleados.push(new Empleados(nombreEmpleado,Apelldos,FechaNacimiento,NIFemp));
+            console.log(this.empleados);
+        }
+
     onload = () =>{
-        mostrarTabla(listaCiudades);
+
+        Mapa.eliminarCiudad();
+        Mapa.añadirCiudad(Array("VALENCIA","34ESPA&Ntilde;A",324,650,"CAPITAL COSTERA. CIUDAD DE LAS ARTES Y LAS CIENCIAS","valencia.gif"));
+        Mapa.ordenarLista();
+        Mapa.mostrarLista();
+        //Mapa.filtrarLista("BARCELONA");
+
     }

@@ -76,6 +76,7 @@ var arrGlobal = Vinilos.concat(Laminas.concat(Otro));
             alert("El valor debe ser mayor a 0");
         }
     }
+
     function alquilarCuadro(idContador){
         let selectValor = document.getElementById("central").
         getElementsByTagName("select")[0].options[document.getElementById("central").
@@ -95,10 +96,6 @@ var arrGlobal = Vinilos.concat(Laminas.concat(Otro));
             document.getElementById(`boton${idContador}`).disabled = true;
             document.getElementById(`alquilar${idContador}`).disabled = true;
 
-            
-
-    
-
         }else{
             alert("El valor de la cantidad debe ser mayor a 0 y la duracion debe ser un numero");
         }
@@ -106,23 +103,30 @@ var arrGlobal = Vinilos.concat(Laminas.concat(Otro));
 
     function informacionCompra(idContador){
 
+        let arrCompras = [];
+
+                arrCompras.push(localStorage.getItem(`imagen${idContador}`));
+                arrCompras.push(localStorage.getItem(`Operacion${idContador}`));
+                arrCompras.push(localStorage.getItem(`cantidad${idContador}`));
+            
+            console.log(arrCompras);
+
            let abrirVentana = window.open();
 
                 abrirVentana.document.body.innerHTML += `<h1>Compra<h1>`;
 
                     let contenido = `<table><tbody><th>Imagen</th>-----<th>Operacion</th>-----<th>Cantidad</th>`;
             
-                        for (let i = 0; i < (localStorage.length/2)-1; i++) {
-                            
+                        for (let i = 0; i < arrCompras.length; i++) {
                             
                             contenido += `<tr>`;
                             
-                                contenido += `<td>${localStorage.getItem(`imagen${idContador}`)}</td>`;
-                                
-                                contenido += `<td>${localStorage.getItem(`Operacion${idContador}`)}</td>`;
-                                
-                                contenido += `<td>${localStorage.getItem(`cantidad${idContador}`)}</td>`;
-                                
+                                contenido += `<td>${arrCompras[i]}</td>`;
+                                i++;
+                                contenido += `<td>${arrCompras[i]}</td>`;
+                                i++;
+                                contenido += `<td>${arrCompras[i]}</td>`;
+                               
                             contenido += `</tr>`;
                         }
                         
