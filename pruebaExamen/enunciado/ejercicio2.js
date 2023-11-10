@@ -53,9 +53,22 @@ var arrGlobal = Vinilos.concat(Laminas.concat(Otro));
 
     function comprarCuadro(idContador){
         if(document.getElementById(idContador).value >= 1){
-            localStorage.setItem(`imagen${idContador}`,`'pagina2_files/${arrGlobal[idContador]}'`);
+            var listaCompras=[];
+            if (localStorage.getItem("compras")){
+                listaCompras=JSON.parse(localStorage.getItem("compras"));
+            }
+    
+            listaCompras.push({
+                "imagen":`'pagina2_files/${arrGlobal[idContador]}'`,
+                "cantidad":document.getElementById(idContador).value,
+                "operacion":`Compra`
+            });
+
+            localStorage.setItem("compras",JSON.stringify(listaCompras));
+
+            /*localStorage.setItem(`imagen${idContador}`,`'pagina2_files/${arrGlobal[idContador]}'`);
             localStorage.setItem(`cantidad${idContador}`,document.getElementById(idContador).value);
-            localStorage.setItem(`Operacion${idContador}`,`Compra`);
+            localStorage.setItem(`Operacion${idContador}`,`Compra`);*/
 
             document.getElementById(`cant${idContador}`).style.display = "none";
             document.getElementById(`boton${idContador}`).disabled = true;
@@ -66,10 +79,7 @@ var arrGlobal = Vinilos.concat(Laminas.concat(Otro));
             let enlaceCompras = divCentral.getElementsByTagName("a")[0];
     
 
-    enlaceCompras.addEventListener("click",(evento)=>{
-        evento.preventDefault();
-        informacionCompra(idContador);
-    });
+    enlaceCompras.addEventListener("click",informacionCompra);
 
 
         }else{
@@ -95,33 +105,31 @@ var arrGlobal = Vinilos.concat(Laminas.concat(Otro));
             document.getElementById(`boton${idContador}`).disabled = true;
             document.getElementById(`alquilar${idContador}`).disabled = true;
 
-            
-
-    
-
         }else{
             alert("El valor de la cantidad debe ser mayor a 0 y la duracion debe ser un numero");
         }
     }
 
-    function informacionCompra(idContador){
+    function informacionCompra(){
 
-           let abrirVentana = window.open();
+        if (localStorage.getItem("compras")){
+            listaCompras=JSON.parse(localStorage.getItem("compras"[0]));
+        }
 
-                abrirVentana.document.body.innerHTML += `<h1>Compra<h1>`;
+        abrirVentana = window.open();
+               abrirVentana.document.body.innerHTML = `<h1>Compra<h1>`;
 
                     let contenido = `<table><tbody><th>Imagen</th>-----<th>Operacion</th>-----<th>Cantidad</th>`;
             
                         for (let i = 0; i < (localStorage.length/2)-1; i++) {
-                            
-                            
+                             
                             contenido += `<tr>`;
                             
-                                contenido += `<td>${localStorage.getItem(`imagen${idContador}`)}</td>`;
+                                contenido += `<td>${localStorage.getItem("compras")}</td>`;
                                 
-                                contenido += `<td>${localStorage.getItem(`Operacion${idContador}`)}</td>`;
+                               // contenido += `<td>${localStorage.getItem(`Operacion${idContador}`)}</td>`;
                                 
-                                contenido += `<td>${localStorage.getItem(`cantidad${idContador}`)}</td>`;
+                                // contenido += `<td>${localStorage.getItem(`cantidad${idContador}`)}</td>`;
                                 
                             contenido += `</tr>`;
                         }
