@@ -19,11 +19,11 @@
             for (let i = 0; i < longuitudarray; i++) {
                 contenido += `<tr>`
                 
-                contenido += `<td><img src=${listaPeliculas[i].imagen} onclick='aterrizarAsientos()'><h1 style=color:white;>${listaPeliculas[i].Nombre}</h1></td>`;
+                contenido += `<td><img src=${listaPeliculas[i].imagen} onclick='aterrizarAsientos(listaPeliculas[${i}].imagen)'><h1 style=color:white;>${listaPeliculas[i].Nombre}</h1></td>`;
                 i++;
-                contenido += `<td><img src=${listaPeliculas[i].imagen} onclick='aterrizarAsientos()'><h1 style=color:white;>${listaPeliculas[i].Nombre}</h1></td>`;
+                contenido += `<td><img src=${listaPeliculas[i].imagen} onclick='aterrizarAsientos(listaPeliculas[${i}].imagen)'><h1 style=color:white;>${listaPeliculas[i].Nombre}</h1></td>`;
                 i++;
-                contenido += `<td><img src=${listaPeliculas[i].imagen} onclick='aterrizarAsientos()'><h1 style=color:white;>${listaPeliculas[i].Nombre}</h1></td>`;
+                contenido += `<td><img src=${listaPeliculas[i].imagen} onclick='aterrizarAsientos(listaPeliculas[${i}].imagen)'><h1 style=color:white;>${listaPeliculas[i].Nombre}</h1></td>`;
                 
                 `</tr>`; 
             }
@@ -71,8 +71,13 @@
     */}
     
     }
-    function aterrizarAsientos(){
+    function aterrizarAsientos(imagen){
+            
         
+        let posicion = listaPeliculas.findIndex((pelicula) => pelicula.imagen == imagen);
 
+        if(posicion !=-1){
+            localStorage.setItem("Pelicula",JSON.stringify(listaPeliculas[posicion]));
             window.location.href = "sacarentrada.html";
+        }
     }

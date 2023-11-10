@@ -18,9 +18,11 @@ function validarRegistroUsuario(){
 
     listaUsuarios.push(nuevoUsuario);
         console.log(nuevoUsuario);
+
         console.log(listaUsuarios);
 
-        window.NuevoUsuarioJSON = JSON.stringify(nuevoUsuario)
+        console.log(localStorage.getItem("usuarios"));
+       // window.NuevoUsuarioJSON = JSON.stringify(nuevoUsuario);
 
 }
     

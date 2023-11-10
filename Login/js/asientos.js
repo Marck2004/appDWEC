@@ -1,6 +1,7 @@
 window.addEventListener('load',()=>{
 
     imprimirasientos();
+
 });
 
     function imprimirasientos(){
@@ -13,7 +14,7 @@ window.addEventListener('load',()=>{
                 contenido += `<tr>`;
 
             for (let j = 0; j < cantidadAsietos; j++) {
-                contenido += `<td><input type=checkbox class='posicionasiento' id="F${i}-C${j}" onclick='numAsiento("${i}","${j}")'></td>`;
+                contenido += `<td><input type=checkbox class='posicionasiento' id="F${i}-C${j}" onchange='numAsiento("${i}","${j}")'></input>`;
             }
              contenido += `</tr>`;
         }
@@ -27,6 +28,8 @@ window.addEventListener('load',()=>{
 
     function numAsiento(y,x){
         console.log("Asiento: "+x+" fila: "+y);
+        document.getElementById("posicionAsiento").innerHTML += "<h3>Columna: "+(parseInt(x)+parseInt(1))+" fila: "+(parseInt(y)+parseInt(1))+"</h3>";
+        
     }
 
     function generarAsientosOcupados(lista){
@@ -37,6 +40,8 @@ window.addEventListener('load',()=>{
             let id = `F${fila}-C${columna}`;
 
             document.getElementById(id).checked = true;
+            document.getElementById(id).disabled = true;
+            document.getElementById(id).style.backgroundColor = "black";
             lista.push(id);
         }
         console.log(lista);
@@ -54,4 +59,5 @@ window.addEventListener('load',()=>{
                 document.getElementById(asiento).className = 'asientosOcultos';
             });
             console.log(asientosOcupados);
+            
     }

@@ -15,8 +15,11 @@ function inicioSesion(){
     var bordecontraseña = document.getElementById("contraseña");
 
     const usuarioEncontrado = listaPersonas.some((usuario) => usuario.nombre === usuarios && usuario.contraseña === contraseñas);
+    const posicion = listaPersonas.findIndex((usuario) => usuario.contraseña === contraseñas && usuario.nombre === usuarios);
+    console.log(posicion);
 
     if(usuarioEncontrado){
+        localStorage.setItem("usuario",JSON.stringify(listaPersonas[posicion]));
         window.location.href = "aterrizaje.html";
     }else{
         alert("Usuario y/o clave erronea");
@@ -37,6 +40,7 @@ function inicioSesion(){
         $.getJSON('jsonExample/ObjetosInicializados.json',function(datos){
     listaPersonas = datos;
     console.log(listaPersonas);
+
 });
 }
 onload = function() {

@@ -15,7 +15,7 @@
 <body>
 
     <div id="container">
-    <form id="formulario" >
+    <form id="formulario" method="post" action="capturarRegistro.php">
               <div id="inicioSesionOculto">
         <label for="emailRegistro" class="form-label mt-3"><h3>Introduzca su email</h3></label>
             <input type="text" name="emailRegistro" id="emailRegistro" placeholder="email registro"  class="form-control">
@@ -29,7 +29,7 @@
         <label for="contraseñaRegistro" class="form-label mt-3"><h3>Contraseña:</h3></label>
             <input type="password" name="contraseñaRegistro" id="contraseñaRegistro" placeholder="Contraseña"  class="form-control">
 
-            <a id="InicioSesionRegistro" onclick="validarRegistroUsuario()" class="btn btn-primary mt-2 mb-2">Registrarse</a>
+            <input type="submit" id="InicioSesionRegistro" onclick="validarRegistroUsuario()" class="btn btn-primary mt-2 mb-2" value="Registrarse"></input>
             <a id="linkRegistrarse" onclick="VolverInicioSesion()" class="btn btn-primary mt-2 mb-2">Iniciar Sesion</a>
         </div>
 
