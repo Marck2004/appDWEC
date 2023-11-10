@@ -86,6 +86,7 @@ var arrGlobal = Vinilos.concat(Laminas.concat(Otro));
             alert("El valor debe ser mayor a 0");
         }
     }
+
     function alquilarCuadro(idContador){
         let selectValor = document.getElementById("central").
         getElementsByTagName("select")[0].options[document.getElementById("central").
