@@ -53,9 +53,22 @@ var arrGlobal = Vinilos.concat(Laminas.concat(Otro));
 
     function comprarCuadro(idContador){
         if(document.getElementById(idContador).value >= 1){
-            localStorage.setItem(`imagen${idContador}`,`'pagina2_files/${arrGlobal[idContador]}'`);
+            var listaCompras=[];
+            if (localStorage.getItem("compras")){
+                listaCompras=JSON.parse(localStorage.getItem("compras"));
+            }
+    
+            listaCompras.push({
+                "imagen":`'pagina2_files/${arrGlobal[idContador]}'`,
+                "cantidad":document.getElementById(idContador).value,
+                "operacion":`Compra`
+            });
+
+            localStorage.setItem("compras",JSON.stringify(listaCompras));
+
+            /*localStorage.setItem(`imagen${idContador}`,`'pagina2_files/${arrGlobal[idContador]}'`);
             localStorage.setItem(`cantidad${idContador}`,document.getElementById(idContador).value);
-            localStorage.setItem(`Operacion${idContador}`,`Compra`);
+            localStorage.setItem(`Operacion${idContador}`,`Compra`);*/
 
             document.getElementById(`cant${idContador}`).style.display = "none";
             document.getElementById(`boton${idContador}`).disabled = true;
@@ -66,10 +79,7 @@ var arrGlobal = Vinilos.concat(Laminas.concat(Otro));
             let enlaceCompras = divCentral.getElementsByTagName("a")[0];
     
 
-    enlaceCompras.addEventListener("click",(evento)=>{
-        evento.preventDefault();
-        informacionCompra(idContador);
-    });
+    enlaceCompras.addEventListener("click",informacionCompra);
 
 
         }else{
@@ -101,32 +111,27 @@ var arrGlobal = Vinilos.concat(Laminas.concat(Otro));
         }
     }
 
-    function informacionCompra(idContador){
+    function informacionCompra(){
 
-        let arrCompras = [];
+        if (localStorage.getItem("compras")){
+            listaCompras=JSON.parse(localStorage.getItem("compras"[0]));
+        }
 
-                arrCompras.push(localStorage.getItem(`imagen${idContador}`));
-                arrCompras.push(localStorage.getItem(`Operacion${idContador}`));
-                arrCompras.push(localStorage.getItem(`cantidad${idContador}`));
-            
-            console.log(arrCompras);
-
-           let abrirVentana = window.open();
-
-                abrirVentana.document.body.innerHTML += `<h1>Compra<h1>`;
+        abrirVentana = window.open();
+               abrirVentana.document.body.innerHTML = `<h1>Compra<h1>`;
 
                     let contenido = `<table><tbody><th>Imagen</th>-----<th>Operacion</th>-----<th>Cantidad</th>`;
             
-                        for (let i = 0; i < arrCompras.length; i++) {
-                            
+                        for (let i = 0; i < (localStorage.length/2)-1; i++) {
+                             
                             contenido += `<tr>`;
                             
-                                contenido += `<td>${arrCompras[i]}</td>`;
-                                i++;
-                                contenido += `<td>${arrCompras[i]}</td>`;
-                                i++;
-                                contenido += `<td>${arrCompras[i]}</td>`;
-                               
+                                contenido += `<td>${localStorage.getItem("compras")}</td>`;
+                                
+                               // contenido += `<td>${localStorage.getItem(`Operacion${idContador}`)}</td>`;
+                                
+                                // contenido += `<td>${localStorage.getItem(`cantidad${idContador}`)}</td>`;
+                                
                             contenido += `</tr>`;
                         }
                         
