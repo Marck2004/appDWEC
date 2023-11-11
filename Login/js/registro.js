@@ -25,6 +25,9 @@ function validarRegistroUsuario(){
        // window.NuevoUsuarioJSON = JSON.stringify(nuevoUsuario);
 
 }
+function verPeliculas(){
+    window.location.href = "aterrizaje.html";
+}
     
 
 

@@ -1,0 +1,95 @@
+@font-face {
+    font-family: asientos;
+    src: url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Alumni+Sans+Collegiate+One&family=Raleway:wght@200&family=Space+Mono&display=swap');
+}
+#asientos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.asientosOcultos{
+    visibility: hidden;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.posicionasiento{
+    margin: 5px;
+    position: relative;
+    padding-left: 30px; /* Ajusta el espacio para la imagen de fondo */
+    cursor: pointer;
+    background-color: white;
+    background-size: 20px 20px; /* Ajusta el tamaño de la imagen de fondo */
+    background-repeat: no-repeat;
+    background-position: left center; /* Ajusta la posición de la imagen de fondo */
+    width: 20px; /* Ajusta el ancho del área del checkbox */
+    height: 20px;
+}
+.asientoSeleccionado{
+    margin: 5px;
+    position: relative;
+    padding-left: 30px; /* Ajusta el espacio para la imagen de fondo */
+    cursor: pointer;
+    background-color: gray;
+    background-size: 20px 20px; /* Ajusta el tamaño de la imagen de fondo */
+    background-repeat: no-repeat;
+    background-position: left center; /* Ajusta la posición de la imagen de fondo */
+    width: 20px; /* Ajusta el ancho del área del checkbox */
+    height: 20px;
+}
+.asientoOcupado{
+    margin: 5px;
+    position: relative;
+    padding-left: 30px; /* Ajusta el espacio para la imagen de fondo */
+    cursor: pointer;
+    background-color: black;
+    background-size: 20px 20px; /* Ajusta el tamaño de la imagen de fondo */
+    background-repeat: no-repeat;
+    background-position: left center; /* Ajusta la posición de la imagen de fondo */
+    width: 20px; /* Ajusta el ancho del área del checkbox */
+    height: 20px;
+}
+.asientosDeluxe{
+    margin: 5px;
+    position: relative;
+    padding-left: 30px; /* Ajusta el espacio para la imagen de fondo */
+    cursor: pointer;
+    background-color: #670002;
+    background-size: 20px 20px; /* Ajusta el tamaño de la imagen de fondo */
+    background-repeat: no-repeat;
+    background-position: left center; /* Ajusta la posición de la imagen de fondo */
+    width: 20px; /* Ajusta el ancho del área del checkbox */
+    height: 20px;
+}
+#asientosElegidos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    font-style: italic;
+    font-family: asientos;
+}
+.info{
+font-family: 'Arial', sans-serif;
+  font-size: 16px; 
+  line-height: 1.6; 
+  color: #333;
+  display: block;
+  float: left;
+  width: 168px;
+}
+#comprar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: #276E90;
+    font-weight: bold;
+    border: none;
+    height: 35px;
+}
+#comprar:hover{
+    color: #efefef;
+    background-color: #0A3143;
+    border-color: #0A3143;
+}

@@ -73,7 +73,6 @@
     }
     function aterrizarAsientos(imagen){
             
-        
         let posicion = listaPeliculas.findIndex((pelicula) => pelicula.imagen == imagen);
 
         if(posicion !=-1){
