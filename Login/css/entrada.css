@@ -93,3 +93,42 @@ font-family: 'Arial', sans-serif;
     background-color: #0A3143;
     border-color: #0A3143;
 }
+#carrito{
+    display: block;
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;
+    background-color: #276E90;
+    font-weight: bold;
+    border: none;
+}
+#carrito:hover{
+    color: #efefef;
+    background-color: #0A3143;
+    border-color: #0A3143;
+}
+#fotoCarrito{
+    height: 100%;
+    width: 30px; 
+    margin-right: 10px;
+}
+#divCarrito{
+    display: block;
+    top: 80px;
+    right: 0px;
+    float: right;
+    width: 25%;
+    height: 1000px;
+    background-color: gray;
+    position: absolute;
+}
+#carritoCambiado{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    margin-top: 20px;
+    background-color: #276E90;
+    font-weight: bold;
+    border: none;
+}

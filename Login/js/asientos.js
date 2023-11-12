@@ -1,8 +1,10 @@
 window.addEventListener('load',()=>{
 
     imprimirasientos();
+    resumenCompra();
 });
     var asientosSeleccionados = [];
+    var carrito = [];
 
     function imprimirasientos(){
         var listaAsientosOcupados = [];
@@ -102,7 +104,28 @@ window.addEventListener('load',()=>{
         }
     }
     }
+
     function resumenCompra(){
         localStorage.setItem("asientos",JSON.stringify(asientosSeleccionados));
-        window.location.href = "";
+
+        document.getElementById("carrito").addEventListener("click",()=>{
+           
+            let divCarrito = document.createElement("div");
+
+                divCarrito.id ="divCarrito";
+
+                document.body.append(divCarrito);
+
+                if(document.getElementById("divCarrito").style.display == "block"){
+                    console.log("aqui");
+                    document.getElementById("divCarrito").style.display = "none";
+                    document.getElementById("carrito").style.float = "left";
+                }else{
+                    console.log("entra");
+                    document.getElementById("carrito").style.float = "left";
+                    document.getElementById("divCarrito").style.display = "block";
+                }
+               // console.log(JSON.parse(localStorage.getItem("usuario")).email);
+                document.getElementById("divCarrito").innerHTML += "<h1>Carrito</h1>";
+        });
     }

@@ -13,7 +13,7 @@ function inicioSesion(){
 
     var bordeusuario = document.getElementById("usuario");
     var bordecontraseña = document.getElementById("contraseña");
-
+        
     const usuarioEncontrado = listaPersonas.some((usuario) => usuario.nombre === usuarios && usuario.contraseña === contraseñas);
     const posicion = listaPersonas.findIndex((usuario) => usuario.contraseña === contraseñas && usuario.nombre === usuarios);
     console.log(posicion);
