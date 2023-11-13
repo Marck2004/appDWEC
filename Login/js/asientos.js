@@ -1,7 +1,6 @@
 window.addEventListener('load',()=>{
 
     imprimirasientos();
-    resumenCompra();
 });
     var asientosSeleccionados = [];
     var carrito = [];
@@ -68,7 +67,10 @@ window.addEventListener('load',()=>{
             let id = `F${fila}-C${columna}`;
 
             document.getElementById(id).className = "asientoOcupado";
+            
             lista.push(id);
+
+            
         }
     }
     function ocultarColumnasEscalera(){
@@ -84,6 +86,7 @@ window.addEventListener('load',()=>{
                 document.getElementById(asiento).className = 'asientosOcultos';
             });
     }
+    // Crear asientos rojos que tendran mas coste
     function asientosDeluxe(){
         for (let i = 0; i < 25; i++) {
             let fila = i;
@@ -104,28 +107,35 @@ window.addEventListener('load',()=>{
         }
     }
     }
-
+    //Añadir y mostrar Carrito
     function resumenCompra(){
         localStorage.setItem("asientos",JSON.stringify(asientosSeleccionados));
-
+        
+        if(JSON.parse(localStorage.getItem("asientos")).length >= 1){
+            alert("Articulo añadido al carrito con exito");
         document.getElementById("carrito").addEventListener("click",()=>{
-           
+
             let divCarrito = document.createElement("div");
 
                 divCarrito.id ="divCarrito";
 
                 document.body.append(divCarrito);
 
-                if(document.getElementById("divCarrito").style.display == "block"){
+                if(document.getElementById("divCarrito").className == "divCarrito"){
                     console.log("aqui");
-                    document.getElementById("divCarrito").style.display = "none";
+                    document.getElementById("divCarrito").className = "divCarritoDesaparecer";
+                    console.log(document.getElementById("divCarrito").className);
                     document.getElementById("carrito").style.float = "left";
                 }else{
                     console.log("entra");
                     document.getElementById("carrito").style.float = "left";
-                    document.getElementById("divCarrito").style.display = "block";
+                    document.getElementById("divCarrito").className = "divCarrito";
                 }
                // console.log(JSON.parse(localStorage.getItem("usuario")).email);
                 document.getElementById("divCarrito").innerHTML += "<h1>Carrito</h1>";
         });
+    }else{
+        alert("Para añadir al carrito debes elegir almenos un asiento");
     }
+    }
+    
