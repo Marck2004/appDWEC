@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>HTML5</title>
+<style>
+    .error{
+        border: 2px solid red;
+    }
+    .parrafoError{
+        color: red;
+    }
+</style>
+<script>
+    function quitarErrores(){
+        let listaCajas = [...document.querySelectorAll(".error, .parrafoError")];
+        listaCajas.forEach(element => {
+            element.className = "";
+        });
+    }
+    function validar(){
+        let noHayerror = true;
+        let cajaNombre = document.getElementById("nombre");
+        let cajaFecha2 = document.getElementById("fecha2"); 
+        let radiosOpciones = [...document.getElementsByName("radio")];
+        
+        quitarErrores();
+            if(cajaNombre.value.trim().length <= 3){
+                noHayerror = false;
+                cajaNombre.className = "error";
+            }
+            let cajaClave = document.getElementById("clave");
+            if(cajaClave.value.trim().length <= 8){
+                noHayerror = false;
+                cajaClave.className = "error";
+                cajaClave.insertAdjacentHTML("afterend","<span>ERROR</span>");
+            }
+
+            if(!/^\d{2}-\d{2}-\d{4}$/.test(cajaFecha.value) || 
+                !esFechaValida(cajaFecha2.value,"-")){
+               cajaFecha.className="error";
+               cajaFecha.insertAdjacentHTML("beforeend","<span class='parrafoError'>FECHA NO VALIDA</span>") 
+            }
+
+            radiosOpciones.forEach((radio)=>{
+               if(!radio.checked){
+                noHayerror=false;
+                document.getElementById("opciones").className = "error";
+            }   
+        })
+            
+
+        return noHayerror;
+    }
+    function esFechaValida(fecha,separador){
+        let dia = fecha.split(separador)[0];
+        let mes = fecha.split(separador)[1]-1;
+        let anio = fecha.split(separador)[2];
+
+        let fecha = new Date(year,mes,dia);
+            
+            if(dia == fecha.getDate() && mes == fecha.getMonth() && 
+                anio == fecha.getFullYear()){
+                    return true;
+            }else{
+                return false;
+            }
+    }
+
+    function esMayorEdad(fechaNacimiento){
+
+        let dia = fecha.split(separador)[0];
+        let mes = fecha.split(separador)[1]-1;
+        let anio = fecha.split(separador)[2];
+
+            let fecha = new Date(year,mes,dia);
+
+        
+    }
+
+    onload = ()=>{
+    document.getElementsByTagName("button")[0].type = "submit";
+    }
+</script>
+</head>
+<body>
+<form method="POST" onsubmit="return validar()" action="novale.php">
+nombre:<input type="text" name="nombre" id="nombre"><br>
+clave:<input type="password" name="clave" id="clave"><br>
+edad:<input type="number" name="edad" id="edad"><br>
+edad2:<input type="text" name="edad2" id="edad2"><br>
+fecha:<input type="date" name="fecha" id="fecha"><br>
+fecha2:<input type="text" placeholder="dd-mm-aaaa" name="fecha2" id="fecha2"><br>
+ciudad:<input type="text" name="ciudad" id="ciudad"><br>
+ciudad2:<select name="ciudad2" id="ciudad2">
+<option>Escoge una ciudad</option>
+<option>Madrid</option>
+<option>Burgos</option>
+<option>Valencia</option>
+</select><br>
+<div id="opciones">opciones:
+opcion1<input type="radio" id="radio1" name="radio" value=1>
+opcion2<input type="radio" id="radio2" name="radio" value=2>
+opcion3<input type="radio" id="radio3" name="radio" value=3>
+</div>
+<br>
+<button type="button">ENVIAR</button>
+</form>
+</body>
+</html>
