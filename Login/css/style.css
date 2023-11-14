@@ -42,5 +42,8 @@ input[type=submit]:hover,input[type=reset]:hover,#InicioSesionRegistro:hover,#li
     color: #0A3143;
     font-weight: bold;
 }
+#contraseñaOculta{
+    display: none;
+}
 
 
