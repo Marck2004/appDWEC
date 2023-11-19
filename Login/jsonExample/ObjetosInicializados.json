@@ -1,4 +1,6 @@
 [
     {"email":"marcosmaestrocobo@gmail.com","tlf":"789456123","nombre":"marcos","contraseña":"1234"},
     {"email":"sergio@gmail.com","tlf":"123456789","nombre":"sergio","contraseña":"4321"}
-]
+,{"email":"victor@gmail.com","tlf":"123456789","nombre":"victor","contraseña":"victorSanchez"}
+,{"email":"asfsd@gmail.com","tlf":"123456789","nombre":"fvadfs","contraseña":"gasdfasdasf"}
+,{"email":"","tlf":"","nombre":"","contraseña":""}]

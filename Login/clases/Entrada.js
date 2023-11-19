@@ -3,8 +3,8 @@ class Entrada{
         this.id_entrada = id_entrada;
         this.asiento = asiento;
         this.emailUsuario = emailUsuario;
-        this.tipoentrada = tipoentrada === "Deluxe" ? "Deluxe" : "General";
-        this.precio = precio;
+        this.tipoentrada = tipoentrada === "asientosDeluxe" ? "Deluxe" : "General";
+        this.precio = this.CalcularPrecio(precio);
     }
 
     NumeroEntrada(){
@@ -18,10 +18,10 @@ class Entrada{
     }
     
     CalcularPrecio(tipo){
-        if(tipo == "Deluxe"){
-            this.precio = 10;
-        }else if(tipo == "General"){
-            this.precio = 6.99;
+        if(tipo == "asientosDeluxe"){
+             return 10;
+        }else if(tipo == "posicionasiento"){
+            return 6.99;
         }
     }
 }

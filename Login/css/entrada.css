@@ -112,7 +112,7 @@ font-family: 'Arial', sans-serif;
     width: 30px; 
     margin-right: 10px;
 }
-#divCarrito{
+.divCarrito{
     display: block;
     top: 80px;
     right: 0px;
@@ -132,6 +132,30 @@ font-family: 'Arial', sans-serif;
     font-weight: bold;
     border: none;
 }
-#divCarritoDesaparecer{
+.divCarritoDesaparecer{
     display: none;
+}
+.centrarTituloCarrito{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.divCarritoTexto{
+    width: 100%;
+}
+.textoCarrito{
+    width: 100%;
+    line-height: 70px;
+    float: left;
+    font-weight: bold;
+}
+
+.imgPelicula{
+    float: right;
+    line-height: 70px;
+    height: 35px;
+    width: 35px;
+    margin-right: 20px;
 }

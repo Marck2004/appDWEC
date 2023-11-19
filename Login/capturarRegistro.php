@@ -5,16 +5,15 @@
     $usuarioNuevo = $_REQUEST['usuarioRegistro'];
     $contraseñaNueva = $_REQUEST['contraseñaRegistro'];
 
-    $open = fopen("jsonExample/ObjetosInicializados.json","w");
+ $open = fopen("./jsonExample/ObjetosInicializados.json","r");
+ $texto = fread($open, filesize("./jsonExample/ObjetosInicializados.json"));
+ $texto = str_replace("]",',{"email":"'. $email . '","tlf":"'.$tlf.'","nombre":"'. $usuarioNuevo . '","contraseña":"'. $contraseñaNueva .'"}',$texto); 
+ $texto = $texto . "]";
+ fclose($open);
+ $open = fopen("./jsonExample/ObjetosInicializados.json","w+"); 
+ fwrite($open, $texto);
+ fclose($open);
 
-    if($open){
-    echo filesize("jsonExample/ObjetosInicializados.json");
-    $texto = fread($open, filesize("jsonExample/ObjetosInicializados.json"));
-    $texto = str_replace("]",`,{"email":"$email","telefono":"$tlf","usuarioNuevo":"$usuarioNuevo","Contraseña:"$contraseñaNueva"}]`,$texto); 
-    $texto = $texto . "]";
-    fwrite($open, $texto);
+    header('location:registro.html?');
 
-    header("location:registro.html");
-    fclose($open);
-    }
 ?>
