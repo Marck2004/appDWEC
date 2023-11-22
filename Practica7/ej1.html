@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        onload = ()=>{
+            let tabla = document.createElement("table");
+
+            document.body.appendChild(tabla);
+
+            let tbody = document.createElement("tbody");
+            tabla.appendChild(tbody);
+
+            for (let i = 0; i < 10; i++) {
+                let tr = document.createElement("tr");
+                tabla.appendChild(tr);
+
+                for (let j = 0; j < 10; j++) {
+                    let td = document.createElement("td");
+                    tr.appendChild(td);
+                    if(i==j){
+                        td.innerHTML = `X`;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
