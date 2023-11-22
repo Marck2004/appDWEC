@@ -153,20 +153,34 @@ window.addEventListener('load',()=>{
                 precio += precioEntrada.precio;
                })
                //localStorage.setItem("resumenCompra",JSON.parse(localStorage.getItem("usuario")).nombre);
-               console.log(JSON.parse(localStorage.getItem("usuario")).nombre);
+               
                 document.getElementById("divCarrito").innerHTML = "<h1 class='centrarTituloCarrito'>Carrito</h1>";
 
                 asientosSeleccionados.forEach((asientos)=>{
                 document.getElementById("divCarrito").innerHTML += 
                 `<div class='divCarritoTexto'>
-                <p class='textoCarrito'>Asientos: ${asientos}
+                <p class='textoCarrito'><img src='imagenPapelera.png' id='${asientos}' onclick='eliminarProducto(event)'>  Asientos: ${asientos}
                 <img class='imgPelicula' src='${JSON.parse(localStorage.getItem("Pelicula")).imagen}'></p>
                 </div><br>`;
+
             })
             document.getElementById("divCarrito").innerHTML += `<p class='textoCarrito'>Cantidad: ${asientosSeleccionados.length} Precio: ${Math.floor(precio)}</p>`;
         });
     }else{
         alert("Para añadir al carrito debes elegir almenos un asiento");
     }
+    }
+
+    function eliminarProducto(event){
+        let pos = asientosSeleccionados.findIndex((asiento)=> asiento == event.target.id);
+
+        asientosSeleccionados.splice(pos,1);
+        console.log(asientosSeleccionados);
+
+        event.target.parentNode.parentNode.innerHTML = "";
+
+        document.getElementById("divCarrito").previousSibling.innerHTML = "";
+
+        document.getElementsByClassName("textoCarrito").innerHTML = `<p class='textoCarrito'>Cantidad: ${asientosSeleccionados.length} </p>`;
     }
     
