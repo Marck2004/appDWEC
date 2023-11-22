@@ -49,7 +49,7 @@ window.addEventListener('load',()=>{
             }
         }
         }
-
+        //Generamos los asientos que son escogidos y los añadimos al localstorage
     function numAsiento(y,x){
 
         if(document.getElementById(`F${y}-C${x}`).className == "posicionasiento" || document.getElementById(`F${y}-C${x}`).className == "asientosDeluxe"){
@@ -93,7 +93,7 @@ window.addEventListener('load',()=>{
         }
         
     }
-
+        //GENERAMOS ASIENTOS OSCUROS PARA QUE NO PUEDAN SER UTILIZADOS
     function generarAsientosOcupados(lista){
         
         for (let i = 0; i < Math.floor(75+(Math.random()*50)); i++) {
@@ -105,9 +105,11 @@ window.addEventListener('load',()=>{
             
             lista.push(id);
 
-            
+            document.getElementById(id).onclick = null;
         }
     }
+
+    //ocultamos asientos para que la sala tenga una forma simetrica
     function ocultarColumnasEscalera(){
         var asientosOcupados = [];
         var ocultarColumna = [4,5,6,18,19,20]
@@ -179,8 +181,8 @@ window.addEventListener('load',()=>{
 
         event.target.parentNode.parentNode.innerHTML = "";
 
-        document.getElementById("divCarrito").previousSibling.innerHTML = "";
+        getElementsByClassName("textoCarrito").remove();
 
-        document.getElementsByClassName("textoCarrito").innerHTML = `<p class='textoCarrito'>Cantidad: ${asientosSeleccionados.length} </p>`;
+        document.getElementById("divCarrito").innerHTML += `<p>Cantidad: ${asientosSeleccionados.length} </p>`;
     }
     
