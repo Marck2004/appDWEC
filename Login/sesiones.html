@@ -18,20 +18,41 @@
 
                 let fecha = new Date();
 
-                let nuevoDiv = $("<div></div>");
+                let nuevoDiv = $(`<div></div>`);
 
                     nuevoDiv.addClass("cajas");
 
-                    nuevoDiv.html(`<h3 id='sesionHecha'>Sesion ${i}</h3>`);
-
-                
+                    nuevoDiv.html(`<h3 id='sesionHecha${i}'>Sesion ${i}</h3>`);
 
                     nuevoDiv.on("click",function(){
+                      if($(`#caja${i}`).text() == null || $(`#caja${i}`).text() == ""){
+                        alert("Debe introducir una fecha");
+                      }else{
+                        localStorage.setItem("Horario",$(`#caja${i}`).text());
                         window.location.href="sacarentrada.html";
+                      }
                     });
                     divPrincipal.append(nuevoDiv);
+
             }
+              //toISOString te devuelve la fecha con formato yyyy:mm:dd:T:HH:mm:ss:ms:Z(zona horaria) y queremos quedarnos solo con la fecha
+            var today = new Date().toISOString().split('T')[0];
+            
+            
+
+            $("#fecha").attr('min', today).on("input",()=>{
+              
+              for (let i = 1; i < 10; i++) {
+
+                let horaAleatoria = Math.floor(Math.random() * (23 - 17 + 1)) + 17;
+            let minAleatoria = Math.floor(Math.random() * (60 - 0 + 1)) + 0;
+
+                $(`#sesionHecha${i}`).append(`<br><p class='textoCaja' id='caja${i}'>${horaAleatoria+" : "+minAleatoria}</p>`);
+              }
+            });
+
         });
+
     </script>
 
 
@@ -57,7 +78,9 @@
       </ul>
     
       <hr>
-
+        
+      <input type="date" name="fecha" id="fecha">
+        
       <div id="sesiones">
 
       </div>
