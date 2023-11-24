@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
     <style>
         table,tr,td{
             border: 2px solid red;
@@ -20,7 +21,7 @@
             document.body.appendChild(tabla);
 
             for (let i = 0; i < 10; i++) {
-                let tr = document.createElement("tr");
+                var tr = document.createElement("tr");
                 tabla.appendChild(tr);
 
                 for (let j = 0; j < 10; j++) {
@@ -35,6 +36,7 @@
                 let boton = document.createElement("button");
                 boton.type="button";
                 boton.innerHTML = "Boton "+i;
+                boton.id = `boton${i}`;
                 tabla.appendChild(boton);
             }
             for (let i = 0; i < 10; i++) {
@@ -43,13 +45,26 @@
                 for (let j = 0; j < 3; j++) {
                     let parrafo = document.createElement("p");
                     tabla.appendChild(parrafo);
-
+                                   
                     let imagen = document.createElement("img");
                     imagen.src = "../Practica6/elseñordelosanillos.jpg"
                     tabla.appendChild(imagen);
                 }
             }
         }
+    </script>
+    <script>
+        $(document).ready(function(){
+            $(`#boton7`).on("click",{},function() {  
+                $(this).css({"position":"absolute"}).animate({
+                'left':'+=250px',
+                'width':'+=150px',
+                'height':'+=150px',
+                'border':'2px solid black'
+            },5000);
+        });
+    })
+
     </script>
 </head>
 <body>
