@@ -77,6 +77,6 @@
 
         if(posicion !=-1){
             localStorage.setItem("Pelicula",JSON.stringify(listaPeliculas[posicion]));
-            window.location.href = "sacarentrada.html";
+            window.location.href = "sesiones.html";
         }
     }

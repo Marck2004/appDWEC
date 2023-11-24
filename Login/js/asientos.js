@@ -2,6 +2,7 @@ window.addEventListener('load',()=>{
 
     imprimirasientos();
 });
+    var precio = 0;
     var asientosSeleccionados = [];
     var objetosAsientos = [];
     var carrito = [];
@@ -106,6 +107,7 @@ window.addEventListener('load',()=>{
             lista.push(id);
 
             document.getElementById(id).onclick = null;
+
         }
     }
 
@@ -125,6 +127,26 @@ window.addEventListener('load',()=>{
     }
     
     
+    function calcularPrecio(){
+        objetosAsientos.forEach((precioEntrada)=>{
+            console.log(precioEntrada.precio);
+           precio += precioEntrada.precio;
+           console.log(precio);
+
+           })
+           return Math.floor(precio);
+    }
+    function restarPrecio(){
+        contador = 0;
+           precio -= objetosAsientos[contador].precio;
+            contador++;
+            asientosSeleccionados.length == 0 ? precio = 0
+            : precio = precio;
+            
+           return precio;
+    }
+
+
     //Añadir y mostrar Carrito
     function resumenCompra(){
         localStorage.setItem("asientos",JSON.stringify(asientosSeleccionados));
@@ -150,10 +172,7 @@ window.addEventListener('load',()=>{
                 }
                //ESCRIBIMOS EN EL CARRITO LA INFORMACION DE PELICULAS QUE QUEREMOS OBTENER
 
-               let precio = 0;
-               objetosAsientos.forEach((precioEntrada)=>{
-                precio += precioEntrada.precio;
-               })
+               
                //localStorage.setItem("resumenCompra",JSON.parse(localStorage.getItem("usuario")).nombre);
                
                 document.getElementById("divCarrito").innerHTML = "<h1 class='centrarTituloCarrito'>Carrito</h1>";
@@ -161,12 +180,12 @@ window.addEventListener('load',()=>{
                 asientosSeleccionados.forEach((asientos)=>{
                 document.getElementById("divCarrito").innerHTML += 
                 `<div class='divCarritoTexto'>
-                <p class='textoCarrito'><img src='imagenPapelera.png' id='${asientos}' onclick='eliminarProducto(event)'>  Asientos: ${asientos}
+                <p class='textoCarrito' ><img src='imagenPapelera.png' id='${asientos}' onclick='eliminarProducto(event)'>  Asientos: ${asientos}
                 <img class='imgPelicula' src='${JSON.parse(localStorage.getItem("Pelicula")).imagen}'></p>
                 </div><br>`;
 
             })
-            document.getElementById("divCarrito").innerHTML += `<p class='textoCarrito'>Cantidad: ${asientosSeleccionados.length} Precio: ${Math.floor(precio)}</p>`;
+            document.getElementById("divCarrito").innerHTML += `<p class='textoCarrito' id="compra">Cantidad: ${asientosSeleccionados.length} Precio: ${calcularPrecio('+')}</p>`;
         });
     }else{
         alert("Para añadir al carrito debes elegir almenos un asiento");
@@ -181,8 +200,6 @@ window.addEventListener('load',()=>{
 
         event.target.parentNode.parentNode.innerHTML = "";
 
-        getElementsByClassName("textoCarrito").remove();
-
-        document.getElementById("divCarrito").innerHTML += `<p>Cantidad: ${asientosSeleccionados.length} </p>`;
+        document.getElementById("compra").innerHTML = `<p>Cantidad: ${asientosSeleccionados.length} Precio: ${restarPrecio()}</p>`;
     }
     
