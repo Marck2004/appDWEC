@@ -185,7 +185,9 @@ window.addEventListener('load',()=>{
                 </div><br>`;
 
             })
-            document.getElementById("divCarrito").innerHTML += `<p class='textoCarrito' id="compra">Cantidad: ${asientosSeleccionados.length} Precio: ${calcularPrecio('+')}</p>`;
+            document.getElementById("divCarrito").innerHTML += `<p class='textoCarrito' id="compra">Cantidad: ${asientosSeleccionados.length} Precio: ${calcularPrecio('+')}<br>
+            <button type='button' class="btn btn-primary mb-2" id='resumenCompra' onclick='compraResumida()'>resumen Compra</button>
+            </p>`;
         });
     }else{
         alert("Para añadir al carrito debes elegir almenos un asiento");
@@ -196,10 +198,11 @@ window.addEventListener('load',()=>{
         let pos = asientosSeleccionados.findIndex((asiento)=> asiento == event.target.id);
 
         asientosSeleccionados.splice(pos,1);
-        console.log(asientosSeleccionados);
 
         event.target.parentNode.parentNode.innerHTML = "";
 
         document.getElementById("compra").innerHTML = `<p>Cantidad: ${asientosSeleccionados.length} Precio: ${restarPrecio()}</p>`;
     }
-    
+    function compraResumida(){
+        window.location.href = "compraResumida.html";
+    }

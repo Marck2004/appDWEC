@@ -82,11 +82,13 @@ font-family: 'Arial', sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
+    margin: 0px auto;
     background-color: #276E90;
     font-weight: bold;
     border: none;
     height: 35px;
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
 #comprar:hover{
     color: #efefef;
@@ -161,4 +163,25 @@ font-family: 'Arial', sans-serif;
 img{
     height: 35px;
     width: 35px;
+}
+#añadidos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+#resumenCompra{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    font-weight: bold;
+    margin: 0px auto;
+    width: 50%;
+    border: none;
+    background-color: gray;
+}
+#resumenCompra:hover{
+    background-color: rgb(68, 67, 67);
 }

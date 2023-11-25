@@ -1,0 +1,29 @@
+#resumenCompra{
+    width: 100%;
+}
+#inicioSesion{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+table{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+th{
+    width: 100%;
+}
+th,td,tr{
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+img{
+    height: 50px;
+    width: 50px;
+}

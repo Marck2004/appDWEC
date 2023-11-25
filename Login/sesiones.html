@@ -11,6 +11,13 @@
     <script src="./js/registro.js"></script>
     <script src="./jQuery/jQuery.js"></script>
     <script>
+      onload=()=>{
+        if(localStorage.getItem("Pelicula") == "" || localStorage.getItem("Pelicula") == null){
+          alert("Debe seleccionar una pelicula");
+          window.location.href = "Aterrizaje.html";
+
+        }
+      }
         $(document).ready(function(){
             let divPrincipal = $("#sesiones");
 

@@ -49,7 +49,6 @@
         
     
     function filtrarporNombre() {
-        console.log("Entra a la funcion");
         if(document.getElementById('Filtrar').value == "Nombre"){
         listaPeliculas.sort((a,b)=>{
             if (a.Nombre>b.Nombre) return 1
