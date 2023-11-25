@@ -43,6 +43,12 @@ var listaJugadores=[
     "comentarios":""
   }
 ]
+var listaEquipos =[
+  "ARCTIC GAMING","CREAM REAL BETIS","EMONKEYZ","MAD LIONS E.C.","MOVISTAR RIDERS","BCN SQUAD","S2V ESPORTS","TEAM HERETICS","TEAM QUESO","UCAM ESPORTS CLUB","VODAFONE GIANTS","WIZARDS CLUB","WYGERS","X6TENCE"
+]
+var logoEquipo = [
+  "artic_logo.png","cream_sports.png","emonkeyz_logo.png","mad_lions.png","movistar_logo.png","bcn_squad_logo.png","s2v_digital_sports.png","heretics_logo.png","team_queso.png","ucam_penguins_logo.png","giants_logo.png","wizards.png","wygers.png","x6tence.png"
+]
 
 function pintarJugadores(){
   document.getElementById("central").innerHTML = "";
@@ -60,7 +66,56 @@ function eliminar(event){
   
       pintarJugadores();
 }
+function mostrarImagenes(){
+  let contador = 0;
+    setInterval(()=>{
+      document.getElementById("anuncio").getElementsByTagName("img")[0].setAttribute("src",`imagenes/${logoEquipo[contador]}`);
+      contador++;
+      if(contador == logoEquipo.length){
+        contador=0;
+      }
+    },300
+      )
+}
+function mostrarJugadores(){
+    document.getElementById("central").innerHTML = `<p>Jugador: <select id='desplegableJugadores' onchange='infoJugador(event)'><option value='0'>Escoge un jugador</option></select></p>`; 
 
+    listaJugadores.forEach((jugador)=>{
+      document.getElementById("desplegableJugadores").insertAdjacentHTML("beforeend",`<option value='${jugador.nif}'>${jugador.nombre+" "+jugador.apellidos}</option>`);
+    });
+}
+
+function infoJugador(event){
+
+        let pos = listaJugadores.findIndex((jugador)=> jugador.nif == event.target.value);
+
+    document.getElementById("central").insertAdjacentHTML("beforeend",
+    `<p>Nombre: <input type='text' value='${listaJugadores[pos].nombre}' id='nombreModif'><br>
+    apellidos <input type='text' value='${listaJugadores[pos].apellidos}' id='apellidoModif'><br>
+    nif <input type='text' value='${listaJugadores[pos].nif}' id='nifModif' disabled><br>
+    correo <input type='text' value='${listaJugadores[pos].correo}' id='correoModif'><br>
+    comentarios <input type='text' value='${listaJugadores[pos].comentarios}' id='comentarioModif'><br>
+    <input type='submit' id='guardarDatos'><input type='reset' value='Borrar' id='borrarJugador'></p>`);
+
+    document.getElementById("guardarDatos").addEventListener("click",()=>{
+        listaJugadores[pos].nombre = document.getElementById("nombreModif").value;
+        listaJugadores[pos].apellidos = document.getElementById("apellidoModif").value;
+        listaJugadores[pos].nif = document.getElementById("nifModif").value;
+        listaJugadores[pos].correo = document.getElementById("correoModif").value;
+        listaJugadores[pos].comentarios = document.getElementById("comentariosModif").value;
+    });
+    document.getElementById("borrarJugador").addEventListener("click",()=>{
+      listaJugadores.splice(pos,1);
+    });
+}
+
+  function nuevoContrato(){
+    document.getElementById("nuevoContrato").style.display = "block";
+  }
 onload = ()=>{
-  pintarJugadores();
+  //pintarJugadores();
+  mostrarImagenes();
+  document.getElementsByTagName("ul")[0].getElementsByTagName("li")[1].addEventListener("click",mostrarJugadores);
+
+   document.getElementsByTagName("ul")[0].getElementsByTagName("li")[2].addEventListener("click",nuevoContrato);
 }
