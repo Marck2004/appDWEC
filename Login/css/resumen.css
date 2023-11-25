@@ -12,18 +12,43 @@ table{
     display: flex;
     align-items: center;
     justify-content: center;
-}
-th{
     width: 100%;
 }
-th,td,tr{
+tbody{
+    width: 75%;
+}
+th,tr{
+    width: 100%;
+}
+th,tr{
     border: 2px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
 }
+td{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 25px;
+}
 img{
-    height: 50px;
-    width: 50px;
+    height: 80px;
+    width: 80px;
+    margin: 0px auto;
+}
+#imprimir{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: #276E90;
+    margin: 0px auto;
+    margin-top: 20px;
+}
+#imprimir:hover{
+    background-color: #0A3143;
 }

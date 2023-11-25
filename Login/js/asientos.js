@@ -201,7 +201,10 @@ window.addEventListener('load',()=>{
 
         event.target.parentNode.parentNode.innerHTML = "";
 
-        document.getElementById("compra").innerHTML = `<p>Cantidad: ${asientosSeleccionados.length} Precio: ${restarPrecio()}</p>`;
+        document.getElementById("compra").innerHTML = `<p>Cantidad: ${asientosSeleccionados.length} Precio: ${restarPrecio()}
+        <br>
+        <button type='button' class="btn btn-primary mb-2" id='resumenCompra' onclick='compraResumida()'>resumen Compra</button>
+            </p>`;
     }
     function compraResumida(){
         window.location.href = "compraResumida.html";
