@@ -43,6 +43,7 @@ var listaJugadores=[
     "comentarios":""
   }
 ]
+var arrObjetos = [];
 var listaEquipos =[
   "ARCTIC GAMING","CREAM REAL BETIS","EMONKEYZ","MAD LIONS E.C.","MOVISTAR RIDERS","BCN SQUAD","S2V ESPORTS","TEAM HERETICS","TEAM QUESO","UCAM ESPORTS CLUB","VODAFONE GIANTS","WIZARDS CLUB","WYGERS","X6TENCE"
 ]
@@ -102,16 +103,63 @@ function infoJugador(event){
         listaJugadores[pos].apellidos = document.getElementById("apellidoModif").value;
         listaJugadores[pos].nif = document.getElementById("nifModif").value;
         listaJugadores[pos].correo = document.getElementById("correoModif").value;
-        listaJugadores[pos].comentarios = document.getElementById("comentariosModif").value;
+        listaJugadores[pos].comentarios = document.getElementById("comentarioModif").value;
+        console.log(listaJugadores);
     });
     document.getElementById("borrarJugador").addEventListener("click",()=>{
       listaJugadores.splice(pos,1);
+      console.log(listaJugadores);
     });
 }
 
   function nuevoContrato(){
-    document.getElementById("nuevoContrato").style.display = "block";
-  }
+
+    document.getElementById("nuevoContrato").getElementsByTagName("select")[0].insertAdjacentHTML("beforeend",`<option value=0>Escoge un jugador</option>`);
+    document.getElementById("nuevoContrato").getElementsByTagName("select")[1].insertAdjacentHTML("beforeend",`<option value=1>Escoge un equipo</option>`);
+
+        listaJugadores.forEach((jugador)=>{
+          document.getElementById("nuevoContrato").getElementsByTagName("select")[0].insertAdjacentHTML("beforeend",`<option value='${jugador.nif}'>${jugador.nombre+" "+jugador.apellidos}</option>`);
+        });
+        listaEquipos.forEach((equipo)=>{
+          document.getElementById("nuevoContrato").getElementsByTagName("select")[1].insertAdjacentHTML("beforeend",`<option>${equipo}</option>`);
+        });
+
+          document.getElementById("guardar").addEventListener("click",()=>{
+
+              if(document.getElementById("nuevoContrato").getElementsByTagName("select")[0].value != 0 && 
+              document.getElementById("nuevoContrato").getElementsByTagName("select")[1].value != 1 &&
+              document.getElementById("nuevoContrato").getElementsByTagName("input")[0].value.split("/")[2] < document.getElementById("nuevoContrato").getElementsByTagName("input")[1].value.split("/")[2]){
+
+                  let pos = listaJugadores.findIndex((jugador)=> jugador.nif == document.getElementById("nuevoContrato").getElementsByTagName("select")[0].value);
+
+                    
+
+                    arrObjetos.push(JSON.stringify({"NombreEquipo": document.getElementById("nuevoContrato").getElementsByTagName("select")[1].value,
+                    "nombreJugador":listaJugadores[pos].nombre+" "+listaJugadores[pos].apellidos,
+                    "FechaInicio":document.getElementById("nuevoContrato").getElementsByTagName("input")[0].value,
+                    "FechaFin":document.getElementById("nuevoContrato").getElementsByTagName("input")[1].value,
+                    "importeAnual":document.getElementById("nuevoContrato").getElementsByTagName("input")[2].value,
+                    "porcentaje":document.getElementById("nuevoContrato").getElementsByTagName("input")[3].value}));
+                
+                    for (let i = 0; i < arrObjetos.length; i++) {
+                      localStorage.setItem(`info${i}`,arrObjetos[i]);
+                    }
+
+                }else{
+                  alert("TIENES ALGUN CAMPO VACIO")
+                }
+              }
+                );
+                document.getElementById("central").innerHTML = "";
+                document.getElementById("nuevoContrato").style.display = "block";
+              }
+
+
+       
+
+  
+
+
 onload = ()=>{
   //pintarJugadores();
   mostrarImagenes();
