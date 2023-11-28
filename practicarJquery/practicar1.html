@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            let diez = 10;
+            $("#pulsar").on("click",()=>{
+                $("div").toggle("swing",()=>{
+                    diez+=100;
+                    $("div").css({"height":diez+"px","width":diez+"px"});
+                });
+            })
+        });
+    </script>
+</head>
+<body>
+    <div style="background-color: red; width: 100px; height: 100px;"></div>
+    <button id="pulsar">PULSAME</button>
+</body>
+</html>

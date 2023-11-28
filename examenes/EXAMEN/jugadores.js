@@ -53,6 +53,7 @@ var logoEquipo = [
 
 function pintarJugadores(){
   document.getElementById("central").innerHTML = "";
+  
   listaJugadores.forEach((jugador)=>{
     
     document.getElementById("central").innerHTML +=
