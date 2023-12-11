@@ -53,6 +53,7 @@ var logoEquipo = [
 
 function pintarJugadores(){
   document.getElementById("central").innerHTML = "";
+  
   listaJugadores.forEach((jugador)=>{
     
     document.getElementById("central").innerHTML +=
@@ -61,7 +62,7 @@ function pintarJugadores(){
 }
 function eliminar(event){
     
-    let pos = listaJugadores.findIndex((jugador)=> jugador.nif == event.target.id);
+    let pos = listaJugadores.findIndex((jugador) => jugador.nif == event.target.id);
 
     listaJugadores.splice(pos,1);
   
@@ -74,7 +75,7 @@ function mostrarImagenes(){
       contador++;
       if(contador == logoEquipo.length){
         contador=0;
-      }
+      }   
     },300
       )
 }
@@ -153,12 +154,6 @@ function infoJugador(event){
                 document.getElementById("central").innerHTML = "";
                 document.getElementById("nuevoContrato").style.display = "block";
               }
-
-
-       
-
-  
-
 
 onload = ()=>{
   //pintarJugadores();

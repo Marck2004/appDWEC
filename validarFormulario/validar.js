@@ -55,4 +55,3 @@ function validar(){
     return false;
     }
     }
-    </script>

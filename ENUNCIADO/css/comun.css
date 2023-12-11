@@ -181,7 +181,11 @@ footer a, footer a:link {
 }
 .oculto{
 display:none;
+<<<<<<< HEAD
 }
 .visible{
 	display: block;
 }
+=======
+}
+>>>>>>> e05aca8d571b036667b126fbeec10a88ff47a5db
