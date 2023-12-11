@@ -14,6 +14,6 @@
  fwrite($open, $texto);
  fclose($open);
 
-    header('location:registro.html?');
+    header('location:login.html');
 
 ?>

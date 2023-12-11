@@ -178,4 +178,21 @@ onload = () =>{
     
     mostrarCuadros(arrGlobal);
 
+$(document).ready(function() {
+
+  var miImagen = $('#Img0');
+
+  // Define la animación
+  function animarImagen() {
+    miImagen.animate({
+      left: '+=100',
+      opacity: 0.5    
+    }, 1000, function() {
+
+      console.log('Animación completada');
+    });
+  }
+
+  animarImagen();
+});
 }

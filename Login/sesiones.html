@@ -44,7 +44,10 @@
             }
               //toISOString te devuelve la fecha con formato yyyy:mm:dd:T:HH:mm:ss:ms:Z(zona horaria) y queremos quedarnos solo con la fecha
             var today = new Date().toISOString().split('T')[0];
-            
+       for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        
+       }     
             
 
             $("#fecha").attr('min', today).on("input",()=>{
