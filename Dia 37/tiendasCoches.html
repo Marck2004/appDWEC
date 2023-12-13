@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(()=>{
+            pedirCoches
+            $("button").click(anadirCoche);
+        });
+        function anadirCoche(){
+            $.post("addCoche.php",{},procesarRespuesta);
+        }
+        function pedirCoches() {
+            $.getJSON("consultaCoches.php",{},pintarCoches)
+        }
+        function pintarCoches(lista){
+            let tbody = document.getElementsByTagName("table")[0].getElementsByTagName("tbody")[0];
+            lista.forEach((celda) => {
+                let fila = tbody.appendChild(document.createElement("tr"));
+                tbody.insertAdjacentHTML("beforeend",`<td>${celda.marca}</td>
+                <td>${celda.modelo}</td>
+                <td>${celda.cilindrada}</td>
+                <td>${celda.date}</td>
+                <td><img src='${celda.foto}'></td>`);
+                
+            });
+        }
+
+    </script>
+    <style>
+        #nuevoCoche{
+            border: 2px solid red;
+            background-color: gray;
+            width: 50%;
+            padding: 5px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+        <div id="nuevoCoche">
+            <p>MARCA<input type="text" name="marca" id="marca"></p>
+            <p>MODELO<input type="text" name="modelo" id="modelo"></p>
+            <p>CILINDRADA<input type="text" name="cilindrada" id="cilindrada"></p>
+            <p>FECHA<input type="text" name="fecha" id="fecha"></p>
+            <p>IMAGEN<input type="text" name="foto" id="foto"></p>
+            <button type="button">AÑADIR FOTO</button>
+        </div>
+    <table>
+        <thead>
+            <th>MARCA</th>
+            <th>MODELO</th>
+            <th>CILINDRADA</th>
+            <th>FECHA</th>
+            <th>FOTO</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+</body>
+</html>
