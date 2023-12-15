@@ -1,66 +1,103 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         $(document).ready(()=>{
-            pedirCoches
-            $("button").click(anadirCoche);
+            pedirCoches();
+            $("#primerBoton").click(anadirCoche);
         });
         function anadirCoche(){
-            $.post("addCoche.php",{},procesarRespuesta);
+            $.post("addCoche.php",{
+                "matricula": $("#matricula").val(),
+                "marca": $("#marca").val(),
+                "modelo": $("#modelo").val(),
+                "cilindrada": $("#cilindrada").val(),
+                "fecha": $("#fecha").val(),
+                "foto": $("#foto").val(),
+            },procesarRespuesta,"json");
         }
-        function pedirCoches() {
+        function procesarRespuesta(respuesta){
+            if (respuesta.estado == "ok"){
+                alert("Coche dado de alta");
+                pedirCoches();
+            } else {
+                alert(respuesta.mensaje)
+            }
+        }
+        function procesarBorrado(respuesta){
+            if (respuesta.estado == 'ok'){
+                
+                alert("Coche borrado");
+                pedirCoches();
+            } else {
+                alert(respuesta.mensaje)
+            }
+        }
+        function pedirCoches(){
             $.getJSON("consultaCoches.php",{},pintarCoches)
         }
+
+        function eliminarCoche(matricula){
+            $.post("deleteCoche.php",{
+                "matricula":matricula
+            },procesarBorrado,"json");
+        }
         function pintarCoches(lista){
-            let tbody = document.getElementsByTagName("table")[0].getElementsByTagName("tbody")[0];
-            lista.forEach((celda) => {
-                let fila = tbody.appendChild(document.createElement("tr"));
-                tbody.insertAdjacentHTML("beforeend",`<td>${celda.marca}</td>
-                <td>${celda.modelo}</td>
-                <td>${celda.cilindrada}</td>
-                <td>${celda.date}</td>
-                <td><img src='${celda.foto}'></td>`);
-                
+            
+            let tbody=document.querySelector("table tbody");
+            tbody.innerHTML = "";
+            lista.forEach(coche => {
+                contenido =`<tr>
+                    <td>${coche.marca}</td>
+                    <td>${coche.modelo}</td>
+                    <td>${coche.cilindrada}</td>
+                    <td>${coche.fecha}</td>
+                    <td><img SRC="../imagenes/${coche.foto}"</td>  
+                    <td><img src='papelera.png' onclick="eliminarCoche('${coche.matricula}')" style='width=75px;height:75px;'></td>     
+                    </tr>`;
+                tbody.innerHTML +=contenido; 
             });
         }
-
     </script>
     <style>
         #nuevoCoche{
             border: 2px solid red;
-            background-color: gray;
-            width: 50%;
-            padding: 5px;
+            background-color: grey;
+            width: 300px;
         }
     </style>
-    <title>Document</title>
 </head>
 <body>
-        <div id="nuevoCoche">
-            <p>MARCA<input type="text" name="marca" id="marca"></p>
-            <p>MODELO<input type="text" name="modelo" id="modelo"></p>
-            <p>CILINDRADA<input type="text" name="cilindrada" id="cilindrada"></p>
-            <p>FECHA<input type="text" name="fecha" id="fecha"></p>
-            <p>IMAGEN<input type="text" name="foto" id="foto"></p>
-            <button type="button">AÑADIR FOTO</button>
-        </div>
+    <div id="nuevoCoche">
+        <p>MATRICULA<input type="text" id="matricula"></p>
+        <p>MARCA<input type="text" id="marca"></p>
+        <p>MODELO<input type="text" id="modelo"></p>
+        <p>CILINDRADA<input type="text" id="cilindrada"></p>
+        <p>FECHA<input type="text" id="fecha"></p>
+        <p>FOTO<input type="text" id="foto"></p>
+        
+        <button type="button" id="primerBoton">AÑADIR FOTO</button>
+    </div>
     <table>
         <thead>
-            <th>MARCA</th>
-            <th>MODELO</th>
-            <th>CILINDRADA</th>
-            <th>FECHA</th>
-            <th>FOTO</th>
+            <tr>
+                <th>MARCA</th>
+                <th>MODELO</th>
+                <th>CILINDRADA</th>
+                <th>FECHA</th>
+                <th>FOTO</th>
+                <th>ELIMINAR</th>
+            </tr>
         </thead>
         <tbody>
-
         </tbody>
     </table>
 
+</form>
 </body>
 </html>

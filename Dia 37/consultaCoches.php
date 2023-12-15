@@ -1,5 +1,6 @@
 <?php
 require("acceso_mysql2.php");
+
 $stmt = $dbh->prepare("SELECT * FROM Coches");
 $stmt->setFetchMode(PDO::FETCH_ASSOC);
 $stmt->execute();
