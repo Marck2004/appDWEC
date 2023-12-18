@@ -7,7 +7,12 @@ $stmt->execute();
 while ($coche=$stmt->fetch()) {
         $arrayCoches[] = array_map('utf8_encode', $coche);
 }
-//enviamos el array como objeto JSON
-echo json_encode($arrayCoches);
+if(count($arrayCoches) > 0){
+        //enviamos el array como objeto JSON
+        echo json_encode($arrayCoches);
+}else{
+        return "[]";
+}
+
 
 ?>
