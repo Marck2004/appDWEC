@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,72 +10,99 @@
             pedirCoches();
             $("#primerBoton").click(anadirCoche);
         });
-        function editar(){
-            $("#primerBoton").text(`Editar Coche`);
-        }
-        function anadirCoche(){
-            $.post("addCoche.php",{
-                "matricula": $("#matricula").val(),
-                "marca": $("#marca").val(),
-                "modelo": $("#modelo").val(),
-                "cilindrada": $("#cilindrada").val(),
-                "fecha": $("#fecha").val(),
-                "foto": $("#foto").val(),
-            },procesarRespuesta,"json");
-        }
-        function procesarRespuesta(respuesta){
-            if (respuesta.estado == "ok"){
+
+        async function anadirCoche(){
+            try{
+                let datos = {
+                    "matricula": $("#matricula").val(),
+                    "marca": $("#marca").val(),
+                    "modelo": $("#modelo").val(),
+                    "cilindrada": $("#cilindrada").val(),
+                    "fecha": $("#fecha").val(),
+                    "foto": $("#foto").val(),
+                }
+
+                let respuesta = await fetch("addCoche.php",{
+                    method : "POST",
+                    body: JSON.stringify(datos),
+                    headers :{
+                        'Content-Type':'application/json'
+                    }
+                });
+
+                respuesta=await respuesta.json();
+
+                if (respuesta.estado == "ok"){
                 alert("Coche dado de alta");
                 pedirCoches();
             } else {
                 alert(respuesta.mensaje)
             }
+
+        }catch(err){
+            console.log(err);
+            }
         }
-        function procesarBorrado(respuesta){
-            if (respuesta.estado == 'ok'){
-                alert("Coche borrado");
+
+        var listaCoches = [];
+        async function pedirCoches(){
+
+            try{
+                let respuesta = await fetch("consultaCoches.php");
+                listaCoches = await respuesta.json();
+                pintarCoches(listaCoches);
+            }catch(err){
+                console.log(err);
+            }
+        }
+
+        async function eliminarCoche(matricula){
+            try{
+                let respuesta = await fetch("deleteCoche.php",{
+                    method:"POST",
+                    body:JSON.stringify({'matricula':matricula}),
+                    headers:{
+                        'Content-type':' application/json'
+                    }
+                });
+                respuesta= await respuesta.json();
+
+                if (respuesta.estado == "ok"){
+                alert("Coche dado de alta");
                 pedirCoches();
-            } else {
+                    } else {
                 alert(respuesta.mensaje)
             }
-        }
-        function pedirCoches(){
-            $.getJSON("consultaCoches.php",{},pintarCoches)
-        }
-
-        function eliminarCoche(matricula){
-            $.post("deleteCoche.php",{
-                "matricula":matricula
-            },procesarBorrado,"json");
-        }
-
-        function procesarModificado(respuesta){
-            if(respuesta.estado == "ok"){
-                alert("Coche Modificado");
-                pedirCoches();
-            }else{
-                alert(respuesta.mensaje);
+            }catch(err){
+                console.log(err);
             }
-        }
-        var listaCoches = [];
-        $.ge
 
-        function modificarCoche(matricula){
-            var posicion = listaCoches.findIndex(coche=>coche.matricula == matricula);
-            if(posicion >=0){
-                $("#matricula").val(matricula).attr("disabled","true");
-                $("#marca").val(listaCoches[posicion].marca);
-                $("#modelo").val(listaCoches[posicion].modelo);
-                $("#cilindrada").val(listaCoches[posicion].cilindrada);
-                $("#fecha").val(listaCoches[posicion].fecha);
-                $("#foto").val(listaCoches[posicion].foto);
+        }
+
+        async function modificarCoche(matricula){
+
+            try{
+                let respuesta = await fetch("modifCoche.php",{
+                    method:"POST",
+                    body:JSON.stringify(datos),
+                    headers:{'Content-Type':'application/json'}
+                })
+                respuesta = await respuesta.json();
+
+                if (respuesta.estado == "ok"){
+                alert("Coche dado de alta");
                 $("#nuevoCoche button:eq(0)").off("click",anadirCoche)
                                             .on("click",modificarCoche)
                                             .text("AÑADIR COCHE");
+                    pedirCoches();
+                    } else {
+                alert(respuesta.mensaje)
             }
+            }catch(err){
+                console.log(err);
+            }
+
         }
-
-
 
         function pintarCoches(lista){
             
