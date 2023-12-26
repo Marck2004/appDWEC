@@ -1,11 +1,10 @@
     import { generarCartonAleatorio } from "./funcionesAuxiliares.js";
 
     var listaPartidas = [];
-
+    let intervalo;
     async function pintarPartidas(){
         const datos = await fetch("partidas.json");
         listaPartidas = await datos.json();
-
         pintarTabla(listaPartidas);
     }
 
@@ -21,6 +20,23 @@
             tr.insertAdjacentHTML("beforeend",`<td>${partida.Premio}</td>`);
             tr.insertAdjacentHTML("beforeend",`<td><button onclick='comprarCarton(${partida.idPartida})'>COMPRAR</button></td>`);
         });
+    }
+
+    function generarTablaNumerosActuales(listaNumeros){
+        let contenido="";
+        for(let i=0;i<10;i++){
+            contenido+="<tr>";
+            for(let j=0;j<10;j++){
+                let valor = (i*10)+j+1;
+                if (listaNumeros.some(numero=> numero==valor)){
+                    contenido+=`<td style="background-color:green">${valor}</td>`;
+                } else {
+                    contenido+=`<td>${valor}</td>`;
+                }
+            }
+            contenido+="</tr>";
+        }
+        $("#tablaNumerosActuales").html(contenido);
     }
     window.comprarCarton = comprarCarton;
     function comprarCarton(id){
@@ -58,5 +74,5 @@
 onload = ()=>{
     pintarPartidas();
     generarTablaCarton(1);
-    generarNumerosActuales();
+    pintarTabla();
 }
