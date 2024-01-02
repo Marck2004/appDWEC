@@ -1,3 +1,4 @@
+
 export function imprimirTablero(){
     let tabla = document.createElement("table");
 
@@ -14,8 +15,7 @@ export function imprimirTablero(){
 
             let td = document.createElement("td");
             tr.insertAdjacentElement("beforeend",td);
-
-            td.addEventListener("click",clickCelda);
+            //td.addEventListener("click",clickCelda);
         }
 
     }
@@ -33,14 +33,22 @@ export function empezarJuego(){
 
         empezar.disabled=true;
 
+        let listaCeldas = document.querySelectorAll("td");
 
+        listaCeldas.forEach((celda)=>{
+            celda.addEventListener("click",()=>{
+                clickCelda(event);
+                comprobarGanador();
+            });
+        })
     });
 }
 function clickCelda(event){
     
     let listaTds = [...document.querySelectorAll("td")];
 
-    console.log(listaTds[Math.floor(Math.random()*10)]);
+    console.log(listaTds[Math.floor(Math.random()*9)]);
+
             event.target.innerHTML="<p class='textoCelda'>X</p>";
 
             listaTds.forEach((td)=>{
@@ -51,13 +59,20 @@ function clickCelda(event){
                 listaTds.forEach((td)=>{
                 td.addEventListener("click",clickCelda);
             })
-            let pos = listaTds.findIndex((celda)=>celda.innerHTML == "");
 
-            if(pos != -1){
-                listaTds[pos].innerHTML = "<p class='textoCelda'>O</p>";
+            let listaAux = listaTds.filter((celda)=>celda.innerHTML == "");
+            let random = Math.floor(Math.random() * listaAux.length);
+
+            if(listaAux.length > 0){
+                listaAux[random].innerHTML = "<p class='textoCelda'>O</p>";
+                listaAux[random].removeEventListener("click",clickCelda);
             }
+            
         }
-        ,3000);
+        ,1000);
       
 }
-
+function comprobarGanador(){
+    let listaCeldas = [[...document.querySelectorAll("tr")],[...document.querySelectorAll("td")]];
+    console.log(listaCeldas);
+}

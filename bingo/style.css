@@ -1,3 +1,11 @@
 table,th,tr,td{
     border: 2px solid black;
 }
+.numeroPremiado{
+    background-color: red;
+    transition: 300ms;
+}
+.numeroNoPremiado{
+    background-color: green;
+    transition: 300ms;
+}
