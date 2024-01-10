@@ -90,6 +90,8 @@ function rellenarInformacionContrato(){
     });
 }
 function validarFormularioContrato(){
+    let contador = localStorage.length;
+    let listaEstadisticas = [];
     let selectJugadores = document.getElementById("nuevoContrato").getElementsByTagName("select")[0];
     let selectEquipos = document.getElementById("nuevoContrato").getElementsByTagName("select")[1];
     let porcentaje = document.getElementById("nuevoContrato").getElementsByTagName("input")[3];
@@ -97,16 +99,29 @@ function validarFormularioContrato(){
 
     if(selectJugadores.value == 0){
         selectJugadores.style.border = "2px solid red";
+    }else{
+        let pos = listaJugadores.findIndex((jugador)=>jugador.nif == selectJugadores.value);
+        listaEstadisticas.push(`${listaJugadores[pos].nombre} ${listaJugadores[pos].apellidos}`);
     }
     if(selectEquipos.value == 0){
         selectEquipos.style.border = "2px solid red";
+    }else{
+        listaEstadisticas.push(selectEquipos.value);
     }
     if(porcentaje.value < 1 || porcentaje.value > 10 || porcentaje.value == ""){
         porcentaje.style.border = "2px solid red";
+    }else{
+        listaEstadisticas.push(porcentaje.value);
     }
     if(importeAnual.value == ""){
         importeAnual.style.border = "2px solid red";
-    }   
+    }else{
+        listaEstadisticas.push(importeAnual.value);
+    }
+    if(listaEstadisticas.length == 4){
+        console.log(listaEstadisticas);
+        localStorage.setItem("contrato"+contador,JSON.stringify(listaEstadisticas));
+    }
 }
 function validarFechas(separador){
     let fechaPrincipal = document.getElementById("nuevoContrato").getElementsByTagName("input")[0];
@@ -116,9 +131,18 @@ function validarFechas(separador){
     let fechaHasta = new Date(fechaSecundaria.value.split(separador)[0],fechaSecundaria.value.split(separador)[1]-1,fechaSecundaria.value.split(separador)[2]);
 
     if(fechaDesde.getDate() != fechaPrincipal.value.split(separador)[0] ||
-    fechaDesde.getMonth() != fechaPrincipal.value.split(separador)[1] ||
+    fechaDesde.getMonth() != fechaPrincipal.value.split(separador)[1]-1 ||
     fechaDesde.getFullYear() != fechaPrincipal.value.split(separador)[2]){
-        
+
+        if(fechaHasta.getDate() != fechaSecundaria.value.split(separador)[0] ||
+        fechaHasta.getMonth() != fechaSecundaria.value.split(separador)[1]-1 ||
+        fechaHasta.getFullYear() != fechaSecundaria.value.split(separador)[2]){
+
+            if(fechaDesde > fechaHasta){
+                fechaPrincipal.style.border = "2px solid red";
+                fechaSecundaria.style.border = "2px solid red";
+            }
+        }
     }
 }
 onload = ()=>{
