@@ -236,7 +236,7 @@ var listaPersonas=[
 "Foto":"Sample22.png",
 "FechaNacimiento": "16/11/1990",
 "EsHombre":"y",
-"ColorPelo":"pelirrojoo",
+"ColorPelo":"pelirrojo",
 "TieneGafas":"n",
 "TieneBigote":"n",
 "TienePeloLargo":"n",

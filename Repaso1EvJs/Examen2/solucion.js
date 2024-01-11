@@ -3,10 +3,14 @@ var preguntas = [
 ];
 var errores = [];
 function insertarSelect(){
+    let listaValores = Object.keys(listaPersonas[codigoPersonaBuscada]);
+    listaValores.splice(0,5);
+    listaValores.splice(1,1)
+
     let select = document.getElementById("divPreguntas").getElementsByTagName("select")[1];
-    preguntas.forEach((pregunta)=>{
+    preguntas.forEach((pregunta,Indice)=>{
         let option = document.createElement("option");
-        option.value = pregunta;
+        option.value = listaValores[Indice];
         let texto = document.createElement("p");
         texto.innerHTML = pregunta;
         option.appendChild(texto);
@@ -45,12 +49,20 @@ function mostrarDatos(pos){
     divDatos.getElementsByTagName("button")[0].addEventListener("click",comprobar(listaPersonas[pos].Codigo));
 }
 function insertarError(){
-    let preguntaSelect = document.getElementById("divPreguntas").getElementsByTagName("select")[1].value;
+    let preguntaSelect = document.getElementById("divPreguntas").
+    getElementsByTagName("select")[1].value;
+
     if(preguntaSelect){
         errores.push(preguntaSelect);
         localStorage.setItem("Error",JSON.stringify(errores));
-        console.log(errores);
+        console.log(listaPersonas);
+        for (const Indice in listaPersonas[codigoPersonaBuscada]) {
+            if(preguntaSelect == Indice){
+                alert(listaPersonas[codigoPersonaBuscada][Indice]);
+            }
+        }
     }
+    
 }
 function comprobar(id){
     if(id == codigoPersonaBuscada){
@@ -61,6 +73,7 @@ function comprobar(id){
         localStorage.setItem("Error",JSON.stringify(errores));
     }
 }
+
 onload = ()=>{
     insertarSelect();
     imprimirPersonas();
