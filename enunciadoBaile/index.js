@@ -8,6 +8,7 @@ async function solicitarCursos(){
 function mostrarCursos(listaCursos){
     console.log(listaCursos);
     let divCentral = document.getElementById("central");
+    divCentral.innerHTML = "";
     let tabla = document.createElement("table");
     let tr = document.createElement("tr");
     tabla.innerHTML = "";
@@ -39,6 +40,7 @@ function mostrarCursos(listaCursos){
 function turnos(lista){
     let div = document.getElementById("superior").getElementsByTagName("p")[0];
     let span = document.createElement("span");
+    span.id = "nombreEntrenadores";
     let select = document.getElementById("superior").getElementsByTagName("select")[0];
     select.addEventListener("change",()=>{
         let listaFiltrada = lista.filter((filtro)=>filtro.curso_horario == select.value);
@@ -46,25 +48,53 @@ function turnos(lista){
         mostrarCursos(listaFiltrada);
         entrenadores(select.value);
         span.innerHTML = "";
-        span.innerHTML = `Todos <input type='radio'>`;
+        span.innerHTML = `Todos <input type='radio' name='radioButton'>`;
         div.appendChild(span);
     })  
 }
 
 async function entrenadores(valorSelect){
-    let enviado = {"TURNO":valorSelect};
+    //let enviado = {"TURNO":valorSelect};
+    let turnoValor = valorSelect;
+    var formData = new FormData();
+    formData.append("TURNO",turnoValor);
+    
     const response = await fetch("listaEntrenadores.php",{
         method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify(enviado)
+        body:formData
     })
 
-    let listaEntrenadores = await response.text();
+    let entrenadores = await response.text();
+    let listaEntrenadores = entrenadores.split(";");
+
+    listaEntrenadores.splice(listaEntrenadores.length-1,1);
     console.log(listaEntrenadores);
+
+    let span = document.getElementById("nombreEntrenadores");
+    listaEntrenadores.forEach((entrenador)=>{
+        span.innerHTML += `${entrenador.split("/")[1]}<input type='radio' name='radioButton' value=${entrenador.split("/")[0]}>`;
+    })
+    filtros(document.getElementsByName("radioButton"));
+}
+function filtros(listaRadios){
+    
+    [...listaRadios].forEach((radio)=>{
+        radio.addEventListener("click",pedirDatos);
+    })
+}
+async function pedirDatos(event){
+    let formData = new FormData();
+    formData.append("ENTRENADOR",event.target.value);
+    let url = `listaCursos.php?ENTRENADOR=${event.target.value}`;
+    let response = await fetch(url,{
+        method:"GET",
+        headers:{
+            "Content-Typoe":"application/json"
+        }
+    })
+    let datos = await response.json();
+    mostrarCursos(datos)
 }
 onload = ()=>{
     solicitarCursos();
-
 }
