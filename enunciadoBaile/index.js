@@ -37,19 +37,34 @@ function mostrarCursos(listaCursos){
     divCentral.appendChild(tabla);
 }
 function turnos(lista){
+    let div = document.getElementById("superior").getElementsByTagName("p")[0];
+    let span = document.createElement("span");
     let select = document.getElementById("superior").getElementsByTagName("select")[0];
     select.addEventListener("change",()=>{
         let listaFiltrada = lista.filter((filtro)=>filtro.curso_horario == select.value);
         document.getElementById("central").innerHTML = "";
         mostrarCursos(listaFiltrada);
+        entrenadores(select.value);
+        span.innerHTML = "";
+        span.innerHTML = `Todos <input type='radio'>`;
+        div.appendChild(span);
     })  
 }
-async function entrenadores(){
-    let datos = await fetch("listaEntrenadores.php");
-    let listaEntrenadores = await datos.json();
+
+async function entrenadores(valorSelect){
+    let enviado = {"TURNO":valorSelect};
+    const response = await fetch("listaEntrenadores.php",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(enviado)
+    })
+
+    let listaEntrenadores = await response.text();
     console.log(listaEntrenadores);
 }
 onload = ()=>{
     solicitarCursos();
-    entrenadores();
+
 }
