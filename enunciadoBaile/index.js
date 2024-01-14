@@ -1,4 +1,5 @@
 var listaCursos = [];
+
 async function solicitarCursos(){
     let datos = await fetch("listaCursos.php");
     listaCursos = await datos.json();
@@ -10,6 +11,7 @@ function mostrarCursos(listaCursos){
     let divCentral = document.getElementById("central");
     divCentral.innerHTML = "";
     let tabla = document.createElement("table");
+    tabla.id = "tablaNueva";
     let tr = document.createElement("tr");
     tabla.innerHTML = "";
     
@@ -21,8 +23,9 @@ function mostrarCursos(listaCursos){
             <td><img src=${curso.curso_imagen} style='width:70px;height:70px;'>
             </td>
             <td>Baile: ${curso.curso_descripcion}<br>Precio: ${curso.curso_precio}
-            <br>Dia: ${curso.curso_dia}<br>Turno: ${curso.curso_horario}<br><button>CONTRATAR</button>
-            <button>DESCONTRATAR</button></td>
+            <br>Dia: ${curso.curso_dia}<br>Turno: ${curso.curso_horario}<br>
+            <button onclick='marcarTabla("${curso.curso_dia}","${curso.curso_horario}","${curso.curso_id}")'>CONTRATAR</button>
+            <button onclick='eliminarCompra("${curso.curso_id}")'>DESCONTRATAR</button></td>
             </tr>
             </table>`);
             
@@ -51,6 +54,7 @@ function turnos(lista){
         span.innerHTML = `Todos <input type='radio' name='radioButton'>`;
         div.appendChild(span);
     })  
+    
 }
 
 async function entrenadores(valorSelect){
@@ -77,24 +81,90 @@ async function entrenadores(valorSelect){
     filtros(document.getElementsByName("radioButton"));
 }
 function filtros(listaRadios){
-    
-    [...listaRadios].forEach((radio)=>{
-        radio.addEventListener("click",pedirDatos);
+    let copiaListaRadios = [...listaRadios];
+
+    copiaListaRadios[0].addEventListener("click",pedirDatosTurno);
+    copiaListaRadios.splice(0,1);
+
+    copiaListaRadios.forEach((radio)=>{
+        radio.addEventListener("click",pedirDatosEntrenador);
     })
 }
-async function pedirDatos(event){
+async function pedirDatosTurno(){
+    let valorSelect = document.getElementById("superior").getElementsByTagName("select")[0].value;
+
+    let formData = new FormData();
+    formData.append("TURNO",valorSelect);
+    let url = `listaCursos.php?TURNO=${valorSelect}`;
+    let response = await fetch(url,{
+        method:"GET",
+        headers:{
+        "Content-type":"application/json"
+    }
+    })
+    let datos = await response.json();
+    console.log(datos);
+    mostrarCursos(datos);
+}
+async function pedirDatosEntrenador(event){
     let formData = new FormData();
     formData.append("ENTRENADOR",event.target.value);
     let url = `listaCursos.php?ENTRENADOR=${event.target.value}`;
     let response = await fetch(url,{
         method:"GET",
         headers:{
-            "Content-Typoe":"application/json"
+            "Content-Type":"application/json"
         }
     })
     let datos = await response.json();
-    mostrarCursos(datos)
+    mostrarCursos(datos);
+}
+var guardarCompra = [];
+function marcarTabla(dia,horario,id){
+
+    let tabla = document.getElementById("horario").getElementsByTagName("table")[0];
+    let thVertical = [...tabla.getElementsByTagName("th")];
+    thVertical.splice(0,2);
+    thVertical.splice(5,thVertical.length);
+    let thHorizontal = [...tabla.getElementsByTagName("th")];
+    thHorizontal.splice(0,7);
+
+    let tr = [...tabla.getElementsByTagName("tr")];
+
+    tr.splice(0,2);
+
+    let posHorizontal = thHorizontal.findIndex((cabecera)=>cabecera.textContent == horario);
+    let posVertical = thVertical.findIndex((cabecera)=>cabecera.textContent == dia.toUpperCase());
+ 
+    tr[posHorizontal].children[posVertical+1].style.backgroundColor = "white";
+    tr[posHorizontal].children[posVertical+1].innerHTML = "x";
+    tr[posHorizontal].children[posVertical+1].id = id;
+
+    guardarCompra.push(tr[posHorizontal].children[posVertical+1]);
+}
+function eliminarCompra(id){
+
+        let pos = guardarCompra.findIndex((compra)=>compra.id == id);
+        guardarCompra[pos].style.backgroundColor = "grey";
+        guardarCompra[pos].innerHTML = "";
+        guardarCompra.splice(pos,1);
+}
+function comprobarCompras(){
+    let pos;
+    let mostrarCompras = [];
+    if(guardarCompra.length > 0){
+        guardarCompra.forEach((compra)=>{
+            pos = listaCursos.findIndex((curso)=>curso.curso_id == compra.id);
+            mostrarCompras.push(listaCursos[pos])
+        })
+        localStorage.setItem("compra",JSON.stringify(mostrarCompras));
+        window.location.href = "factura.html";
+    }else{
+        alert("No existe ningun baile comprado");
+    }
 }
 onload = ()=>{
     solicitarCursos();
+    document.getElementById("horario").getElementsByTagName("button")[0].
+    addEventListener("click",comprobarCompras);
 }
