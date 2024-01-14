@@ -13,6 +13,27 @@ function mostrarCompras(){
     });
 
     divCursos.insertAdjacentHTML(`afterbegin`,`<b>CURSOS CONTRATADOS POR UN PRECIO DE ${precio}</b>`);
+    cambiarFondo();
+}
+function cambiarFondo(){
+    let listaParrafos = [...document.getElementById("cursos").getElementsByTagName("p")];
+    let contador = 0;
+    let intervalo = setInterval(()=>{
+        listaParrafos[contador].style.backgroundColor = "red";
+        if(contador >= 1 ){
+            listaParrafos[contador-1].firstChild.remove();
+        }
+        contador++;
+        
+        
+        document.getElementsByTagName("form")[1].getElementsByTagName("button")[1].addEventListener("click",()=>{
+            clearInterval(intervalo);
+        })
+        if(contador == listaParrafos.length){
+            document.getElementsByTagName("form")[1].getElementsByTagName("button")[1].onclick = null;
+            let ventana = window.open();
+            ventana.innerHTML
+    }},3000);
 }
 onload = ()=>{
     mostrarCompras();
