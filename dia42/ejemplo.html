@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        /*onload=()=>{
+            let boton1 = document.getElementById("boton1");
+            boton1.addEventListener("click",crearBotonesTabla);
+        }
+        function crearBotonesTabla(){
+            let tbody = document.getElementsByTagName("tbody")[0];
+            for (let i = 0; i < 10; i++) {
+                let tr = document.createElement("tr");
+                tbody.appendChild(tr);
+                for (let j = 0; j < 10; j++) {
+                    let td = document.createElement("td");
+                    tr.appendChild(td);
+                    let boton = document.createElement("button");
+                    td.appendChild(boton);
+                    boton.textContent = "PULSAME";
+                    //boton.innerHTML = "PULSAME";
+                    //boton.appendChild(document.createTextNode("Pulsame"));
+                    //boton.addEventListener("click",muestraMensaje);
+                    boton.setAttribute("onclick",`muestraMensaje(event,${i},${j})`)
+                }
+
+            }*/
+            $(document).ready(()=>{
+            $("#boton1").on("click",
+            {"mensaje":"HOLA 2 DAW"},
+            muestraMensaje);
+            rellenarTabla();
+        })
+        
+        function muestraMensaje(event){
+            alert(event.data.mensaje)
+            $(event.target).css({"position":"absolute"}).animate({"width":"300px","top":300},10000);
+        }
+        function rellenarTabla(){
+            let tbody = $("table tbody");
+            for (let i = 0; i < 10; i++) {
+                let fila = $("<tr></tr>").appendTo(tbody);
+                for (let j = 0; j < 10; j++) {
+                    let celda = $("<td></td>").appendTo(fila);
+                    let boton = $("<button>PULSAME</button>").appendTo(celda);
+                }
+            }
+            
+        }
+        
+    </script>
+</head>
+<body>
+    <button id="boton1">PULSAME</button>
+    <table>
+        <thead>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+</html>
