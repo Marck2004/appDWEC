@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        table,tr,td{
+            border: 2px solid black;
+            width: 75px;
+            height: 50px;
+        }
+    </style>
     <script>
         /*onload=()=>{
             let boton1 = document.getElementById("boton1");
@@ -29,7 +36,7 @@
                 }
 
             }*/
-            $(document).ready(()=>{
+            /*$(document).ready(()=>{
             $("#boton1").on("click",
             {"mensaje":"HOLA 2 DAW"},
             muestraMensaje);
@@ -50,18 +57,42 @@
                 }
             }
             
+        }*/
+        function señalarCelda(event){
+            event.target.style.backgroundColor = "blue";
+            console.log("FILA "+event.target.parentNode.rowIndex);
+            console.log("COLUMNA "+event.target.cellIndex);
         }
-        
+        onload = ()=>{
+            [...document.querySelectorAll("td")].forEach((celda) => {
+                celda.addEventListener("click",señalarCelda);
+            });
+        }
+
     </script>
 </head>
 <body>
-    <button id="boton1">PULSAME</button>
+    
     <table>
         <thead>
 
         </thead>
         <tbody>
-
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
         </tbody>
     </table>
 </body>
