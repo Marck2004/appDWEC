@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+  <meta charset="UTF-8">
+  <title> EMPAREJADOS EL CAÑAVERAL</title>
+  <link rel="stylesheet" href="./css/comun.css">
+  <link rel="shortcut icon" href="#">
+
+  <script src="jquery.js"></script>
+  <script src="validar.js"></script>
+  <script>
+    $(document).ready(function(){
+      if(localStorage.getItem("clicks")){
+        let clicks = JSON.parse(localStorage.getItem("clicks"));
+        console.log(clicks);
+        clicks.forEach((click) => {
+          $(`<tr>
+            <td>${click.NumeroClick}</td>
+            <td>${click.NumeroCelda}</td>
+            <td><img src='imagenes/${click.Persona.Foto}' style='width:75px;heigth:75px;'></td>
+            <td>${click.Resultado}</td>
+            <td>${click.Puntos}</td>
+            <td><button onclick='cambiarPuntuacion(event,"${click.Puntos}","${click.NumeroCelda}")'>Corregir</button></td></tr>`).appendTo("#principal table:eq(1) tbody");
+        });
+      }
+      animarImagenes();
+      mostrarBotones();
+    })
+    function animarImagenes(){
+      $("#principal table:eq(1) tbody tr:odd() td img").css({"position":"absolute"}).animate({"width":140,"left":100},5000);
+    }
+    function mostrarBotones(){
+      $("#principal button").css({"border":"2px solid red"}).show();
+      $("#principal button:eq(0)").on("click",mostrarAciertos);
+      $("#principal button:eq(1)").on("click",mostrarFallos);
+    }
+    function mostrarAciertos(){
+
+      if(localStorage.getItem("clicks")){
+        $("#principal table:eq(1) tbody").text("");
+        let clicks = JSON.parse(localStorage.getItem("clicks"));
+        clicks.forEach((click) => {
+          if(click.Resultado == "acierto"){
+          $(`<tr>
+            <td>${click.NumeroClick}</td>
+            <td>${click.NumeroCelda}</td>
+            <td><img src='imagenes/${click.Persona.Foto}' style='width:75px;heigth:75px;'></td>
+            <td>${click.Resultado}</td>
+            <td>${click.Puntos}</td>
+            <td><button onclick='cambiarPuntuacion(event,"${click.Puntos}","${click.NumeroCelda}")'>Corregir</button></td></tr>`).appendTo("#principal table:eq(1) tbody");
+          }
+        });
+      }
+    }
+    function mostrarFallos(){
+
+if(localStorage.getItem("clicks")){
+  $("#principal table:eq(1) tbody").text("");
+  let clicks = JSON.parse(localStorage.getItem("clicks"));
+  clicks.forEach((click) => {
+    if(click.Resultado == "error"){
+    $(`<tr>
+      <td>${click.NumeroClick}</td>
+      <td>${click.NumeroCelda}</td>
+      <td><img src='imagenes/novale.png' style='width:75px;heigth:75px;'></td>
+      <td>${click.Resultado}</td>
+      <td>${click.Puntos}</td>
+      <td><button onclick='cambiarPuntuacion(event,"${click}")'>Corregir</button></td></tr>`).appendTo("#principal table:eq(1) tbody");
+    }
+  });
+}
+}
+function cambiarPuntuacion(event,puntos,celda){
+
+  let storage = JSON.parse(localStorage.getItem("clicks"));
+
+    event.target.parentNode.previousElementSibling.textContent = 0;
+    let pos = storage.findIndex((elemento)=>elemento.NumeroCelda == celda);
+    storage[pos].Puntos = 0;
+    console.log(storage);
+    localStorage.setItem("clicks",JSON.stringify(storage));
+    event.target.onclick = null;
+}
+  </script>
+
+
+  <style>
+    th,td{
+      border: 2px solid white;
+    }
+	.oculto{
+		display: none;
+	}
+  input[type='checkbox']{
+    border: 2px solid red !important;
+  }
+  </style>
+</head>
+<body translate="no" >
+  <div class="oculto">
+    <input type="text">
+	<table></table>
+    <input type="checkbox">
+  </div>
+  <div id="container">
+    <nav>
+        <ul>
+            <li><a href="index.html">General</a></li>
+            <li><a href="#">X<i class="down"></i></a>
+            <!-- Primer Menu Desplegable -->
+            <ul>
+                <li><a href="#">Opcion 1</a></li>
+                <li><a href="#">Opcion 2</a></li>
+                <li><a href="#">Opcion 3</a></li>
+            </ul>        
+            </li>
+	        <li><a href="">Recarga</i></a>
+                <li><a href="#">Opcion <i class="down"></i></a>
+             <!-- Primer Menu Desplegable -->
+            <ul>
+                <li><a href="#">Opcion 1</a></li>
+                <li><a href="#">Opcion 2</a></li>
+                <li><a href="#">Opcion 3</a>
+            	 <!-- Segudo Menu Desplegable -->
+                <ul>
+                    <li><a href="#">Ver</a></li>
+                    <li><a href="#">Modificar</a></li>
+                    <li><a href="#">Otros</a>
+                         <!-- Tercer Menu Desplegable -->
+                        <ul>
+                            <li><a href="#">opcion1</a></li>
+                            <li><a href="#">opcion2</a></li>
+                            <li><a href="#">opcion3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                </li>
+            </ul>
+            </li>
+            <li><a href="#">Ayuda</i></a></li>
+            <li>
+			<button type="button" id="btnRecibir">Recibir premio</button>
+			
+			
+			</li>
+        </ul>
+    </nav>
+	</div>
+   <div id="principal">
+   <button type="button" class="oculto">SOLO ACIERTOS</button>
+   <button type="button" class="oculto">SOLO FALLOS</button>
+   <table></table>
+     <h1>CLICKS REALIZADOS</h1>
+     <table>
+       <thead>
+	     <th>Orden</th>
+         <th>Celda</th>
+		 <th>Foto</th>
+         <th>Resultado</th>
+         <th>Puntos</th>
+		 <th>Acción</th>
+       </thead>
+       <tbody>
+       </tbody>
+     </table>
+   </div>	 
+   <div id="ejercicio3">
+    <p>Puntos<input type="text"></p>
+    <p>Fecha<input type="text"></p>
+    <p>Ciudad<input type="text"></p>
+    <p>Tipo de regalo:<br>
+	   1<input name="tipo" value=1 type="checkbox">
+	   2<input name="tipo" value=2 type="checkbox">
+	   3<input name="tipo" value=3 type="checkbox">
+	   4<input name="tipo" value=4 type="checkbox">
+	   5<input name="tipo" value=5 type="checkbox">
+	</p>
+	
+   <div>   
+</div>
+</body>
