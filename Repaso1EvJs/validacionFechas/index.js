@@ -15,6 +15,8 @@ function validarUnaFecha(separador){
         }else{
             if(fecha > fechaActual){
                 console.log("LA FECHA INTRODUCIDA ES MAYOR A HOY POR 3 DIAS");
+                let dif = fecha - fechaActual
+                console.log(dif/(1000*60*60*24));
             }
         }
 }
