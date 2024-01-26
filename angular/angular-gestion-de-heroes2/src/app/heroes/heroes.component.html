@@ -1,0 +1,19 @@
+<div>
+<ul class="heroes">
+  @for (heroe of heroes; track heroe.id) {
+    <li (click)="asignar(heroe)">
+      <span class="badge">{{heroe.id}}</span> {{heroe.nombre}}
+    </li>
+  }
+</ul>
+  <label for="heroe-nombre">Nombre: </label>
+  <input id="heroe-nombre"  [(ngModel)]="selectedHeroe.nombre" placeholder="nombre">
+</div>
+
+<div *ngIf="heroes">
+  <h2>{{ selectedHeroe.nombre | uppercase }} Detalles</h2>
+  <div><span>id: </span>{{selectedHeroe.id}}</div>
+  <div>
+    <label for="heroe-nombre">Nombre: <span>{{ selectedHeroe.nombre }}</span></label>
+  </div>
+</div>
