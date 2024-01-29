@@ -1,0 +1,12 @@
+<h2>Mis heroes</h2>
+<ul class="heroes">
+@for (heroe of heroes; track heroe.id) {
+
+<li (select)="onSelect(heroe)" [class.selected]="heroe === selectedHeroe">
+  <span class="badge">{{heroe.id}}</span> {{heroe.nombre}}
+</li>
+}
+</ul>
+
+<app-heroe-detalle [heroe]= "selectedHeroe"></app-heroe-detalle>
+
