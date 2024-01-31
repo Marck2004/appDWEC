@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import { Juego } from '../../interfaces/juego';
 
+
 @Component({
   selector: 'app-juegos',
   standalone: true,
@@ -11,7 +12,7 @@ import { Juego } from '../../interfaces/juego';
   styleUrl: './juegos.component.css'
 })
 export class JuegosComponent {
-  juegos?:Juego[];
+  juegos:Juego[];
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
 
 
