@@ -8,7 +8,7 @@ const LISTAJUEGOS:Juego[]=[
     precio: 45,
     pegi:18,
     plataforma:"PS5",
-    foto:"/assets/foto1.png"
+    foto:"/assets/img/foto1.png"
   },
   {
     _id:"2",
@@ -17,7 +17,7 @@ const LISTAJUEGOS:Juego[]=[
     precio: 40,
     pegi:16,
     plataforma:"PS5",
-    foto:"/assets/foto2.png"
+    foto:"/assets/img/foto2.png"
   }
 ];
 @Injectable({
