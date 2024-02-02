@@ -30,3 +30,19 @@ export class ServicioJuegoService {
     return LISTAJUEGOS;
   }
 }
+/* const url = 'https://imdb188.p.rapidapi.com/api/v1/searchIMDB?query=%3CREQUIRED%3E';
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': 'e3cf6ba7cfmshabb56c9e92168c0p14b60cjsnbc83c746cbec',
+		'X-RapidAPI-Host': 'imdb188.p.rapidapi.com'
+	}
+};
+
+try {
+	const response = await fetch(url, options);
+	const result = await response.text();
+	console.log(result);
+} catch (error) {
+	console.error(error);
+}*/
