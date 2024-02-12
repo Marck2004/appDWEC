@@ -6,7 +6,23 @@
     <title>Document</title>
     <script src="jquery.js"></script>
     <script>
-        $(document).ready(()=>{
+        class Tarjeta extends HTMLElement{
+            constructor(){
+                super();
+                let shadowRoot = this.attachShadow({mode:"open"});
+                
+                this.shadowRoot.innerHTML = this.template;
+            }
+            get template(){
+                let modelo = this.getAttribute("modelo");
+                return `<p>${modelo}</p>`;
+            }
+
+        }
+        window.customElements.define("app-tarjeta",Tarjeta);
+    </script>
+    <script>
+        /*$(document).ready(()=>{
             let listaValores=[];
             if (localStorage.getItem("clicks")){
                 listaValores = JSON.parse(localStorage.getItem("clicks"))
@@ -44,7 +60,7 @@
             }
 
 
-        }
+        }*/
 
         function mostrarMensaje(evento){
             
@@ -66,6 +82,7 @@
 <body>
 <button id="boton1">Pulsame</button> 
 <button id="boton2">Pulsame</button>    
+<app-tarjeta modelo="BMW"></app-tarjeta>
 <table>
     <thead>
     </thead>
