@@ -3,7 +3,7 @@ import { clases } from "./Componente.js";
 var listaCursos = [];
 async function pedirCursos(){
     const response = await fetch("listaCursos.php");
-    const data = await await response.json();
+    const data = await response.json();
     listaCursos=data;
     mostrarCursos(data);
     console.log(data);
