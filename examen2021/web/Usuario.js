@@ -6,6 +6,7 @@ export async function consultarUsuarios(){
     let data = await response.json();
     console.log(data);
     pintarUsuarios(data);
+    pintarTabla(data);
     }else{
         let divUsuarios = document.getElementById("usuarios");
         divUsuarios.innerHTML = "";
@@ -16,6 +17,7 @@ function pintarUsuarios(lista){
 
     let divUsuarios = document.getElementById("usuarios");
     divUsuarios.innerHTML = "";
+    
         lista.forEach((usuario) => {
             let iesUsuario = document.createElement("ies-usuario");
             iesUsuario.setAttribute("imagen",usuario.foto);
@@ -23,4 +25,23 @@ function pintarUsuarios(lista){
             divUsuarios.appendChild(iesUsuario);
         });
     
+}
+function pintarTabla(lista){
+    let tabla = document.getElementById("tablaUsuarios");
+    tabla.innerHTML = "";
+    let tr = document.createElement("tr");
+    
+    lista.forEach((usuario,index) => {
+        if(index % 4 == 0){
+            tr = document.createElement("tr");
+            tabla.appendChild(tr);
+        }
+            let td = document.createElement("td");
+            tr.appendChild(td);
+
+        let iesUsuario = document.createElement("ies-usuario");
+        iesUsuario.setAttribute("imagen",usuario.foto);
+        iesUsuario.setAttribute("parrafo",usuario.nombre);
+        td.appendChild(iesUsuario);
+    });
 }
